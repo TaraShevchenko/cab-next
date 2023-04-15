@@ -50,7 +50,7 @@ const AppProvider: FC<IAppProvider> = ({ children }) => {
    return (
       <>
          <Head>
-            <title>{pageInfo?.title} | Fancee Wallet</title>
+            <title>{pageInfo?.title} | Fansee Wallet</title>
             <meta name="description" content={pageInfo?.description}></meta>
          </Head>
          <ThemeProvider theme={getTheme(theme)}>
