@@ -67,3 +67,4 @@ export const API_ROUTES = {
    USERS: '/users'
 }
 
+export const test = {test: 'test'}
