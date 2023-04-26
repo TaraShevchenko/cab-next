@@ -66,3 +66,4 @@ export const API_ROUTES = {
    USER_PASSWORD: (id: string) => `/users/${id}/password`,
    USERS: '/users'
 }
+
