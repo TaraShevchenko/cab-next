@@ -1,4 +1,7 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+
+import { selectUserData } from '@/modules/user/redux/selectors'
 
 import Button from '@/core/components/ui/button/Button'
 
@@ -6,10 +9,11 @@ import WalletIcon from '@/core/assets/icons/filled-wallet.svg'
 import LuminousLogo from '@/core/assets/icons/luminous-logo.svg'
 import WithdrawalIcon from '@/core/assets/icons/withdrawal.svg'
 
-import { AVAILABLE_BALANCE } from './config'
 import * as S from '../style'
 
 const AvailableBalance = () => {
+   const userData = useSelector(selectUserData)
+
    return (
       <S.Card withLogo>
          <S.CardTitle>Available Balance</S.CardTitle>
@@ -17,14 +21,15 @@ const AvailableBalance = () => {
             <S.CardBalance>
                <LuminousLogo/>
                <S.Balance>
-                  {AVAILABLE_BALANCE?.balance_fst}
+                  {userData?.balance}
                </S.Balance>
                <S.BalanceCurrency>
                   fst
                </S.BalanceCurrency>
             </S.CardBalance>
             <S.ConvertedBalance>
-               ≈ {AVAILABLE_BALANCE?.balance_usdt} USDT
+               {/* Todo: Ask backend to add the usdt balance field to user response */}
+               ≈ {userData?.balance} USDT
             </S.ConvertedBalance>
          </S.CardBalanceWrapper>
          <S.ButtonGroup>

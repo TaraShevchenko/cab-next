@@ -22,6 +22,6 @@ export interface IAuthResponse {
    token: string;
 }
 
-export interface IResponseToken {
-   token: string;
+export interface ILogoutResponse {
+   message: boolean;
 }

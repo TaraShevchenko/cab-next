@@ -136,6 +136,15 @@ export const ProfileName = styled.button(
    `
 )
 
+export const ProfileNameText = styled.span(
+   () => css`
+      max-width: 130px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+   `
+)
+
 export const ProfileDropdownActive = css`
    top: calc(100% + 11px);
    opacity: 1;

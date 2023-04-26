@@ -1,8 +1,10 @@
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
 import React, { useRef, useState } from 'react'
+import { useSelector } from 'react-redux'
 
-import { useAppDispatch } from '@/core/redux/store'
-import { logOut } from '@/modules/auth/redux/slice'
+import { useLogoutMutation } from '@/modules/auth/redux/api'
+import { selectUserData } from '@/modules/user/redux/selectors'
 
 import NavbarList from '@/core/components/layout/navbar/navbar-list/NavbarList'
 import ToggleTheme from '@/core/components/toggle-theme/ToggleTheme'
@@ -11,21 +13,24 @@ import Backdrop from '@/core/components/ui/backdrop/Backdrop'
 import useClickOutside from '@/core/hooks/useClickOutside'
 import useLoading from '@/core/hooks/useLoading'
 
+import { notificationContainer } from '@/core/utils/notofication-container'
+
 import Arrow from '@/core/assets/icons/arrow.svg'
 import AvatarBlank from '@/core/assets/icons/avatar-blank.svg'
 import Burger from '@/core/assets/icons/burger.svg'
 import Close from '@/core/assets/icons/close.svg'
 import Logout from '@/core/assets/icons/logout.svg'
 
-import { USER_DATA } from './config'
 import NotificationDropdown from './notification-dropdown/NotificationDropdown'
 import * as S from './style'
 import { ERoutesPaths, routes } from '@/config'
 
 const Header = () => {
-   const dispatch = useAppDispatch()
+   const userData = useSelector(selectUserData)
+
    const handleLoadingBefore = useLoading()
    const { pathname, push } = useRouter()
+
    const pageInfo = routes.find(({ path }) => path === pathname)
 
    const [ isOpenDropdown, setIsOpenDropdown ] = useState(false)
@@ -47,10 +52,32 @@ const Header = () => {
       setIsOpenMobileMenu(false)
    }
 
-   const handleLogOut = () => {
+   const [ handleLogout ] = useLogoutMutation()
+
+   const handleLogOut = async () => {
+      try {
+         const response = await handleLogout()
+
+         if ('error' in response) {
+            notificationContainer('Logout failed !', 'error')
+         } else {
+            handleLoadingBefore(() => {
+               push(ERoutesPaths.SIGN_IN)
+               Cookies.set('token', '')
+               Cookies.set('user_id', '')
+               notificationContainer('Logout success !', 'success')
+               return undefined
+            })
+         }
+      } catch (err) {
+         notificationContainer('Logout failed !', 'error')
+      }
+
+      // Todo - remove this after deploy backend
       handleLoadingBefore(() => {
-         dispatch(logOut())
          push(ERoutesPaths.SIGN_IN)
+         Cookies.set('token', '')
+         Cookies.set('user_id', '')
       })
    }
 
@@ -71,17 +98,17 @@ const Header = () => {
          <S.ProfileWrapper isActive={isOpenDropdown} ref={dropdownRef}>
             <S.ProfilePhotoWrapper>
                {
-                  USER_DATA?.user_image
+                  userData?.user_image
                      ? <S.ProfilePhoto
                         height={50} width={50}
-                        src={USER_DATA.user_image}
-                        alt={USER_DATA.first_name}
+                        src={userData.user_image}
+                        alt={userData.first_name}
                      />
                      : <AvatarBlank/>
                }
             </S.ProfilePhotoWrapper>
             <S.ProfileName onClick={handleToggleDropdown}>
-               {`${USER_DATA?.first_name} ${USER_DATA?.last_name}` || `id${USER_DATA?.id}` || ''}
+               <S.ProfileNameText>{`${userData?.first_name} ${userData?.last_name}` || `id${userData?.id}` || ''}</S.ProfileNameText>
                <Arrow/>
             </S.ProfileName>
             <S.ProfileDropdown>
@@ -103,7 +130,7 @@ const Header = () => {
                      <AvatarBlank/>
                   </S.ProfilePhotoWrapper>
                   <S.ProfileName onClick={handleToggleDropdown}>
-                     {`${USER_DATA?.first_name} ${USER_DATA?.last_name}` || `id${USER_DATA?.id || ''}` || ''}
+                     {`${userData?.first_name} ${userData?.last_name}` || `id${userData?.id || ''}` || ''}
                   </S.ProfileName>
                </S.MobileMenuProfileWrapper>
 

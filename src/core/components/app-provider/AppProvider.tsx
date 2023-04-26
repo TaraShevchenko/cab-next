@@ -1,22 +1,24 @@
+import Cookies from 'js-cookie'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 
 import { selectTheme } from '@/core/redux/selectors'
-import { selectToken } from '@/modules/auth/redux/selectors'
+import { setTheme } from '@/core/redux/slice'
+import { useAppDispatch } from '@/core/redux/store'
 
 import ToastCustomContainer from '@/core/components/ui/toast-container/ToastCustomContainer'
 
 import { GlobalStyles } from '@/core/styles/global'
-import { getTheme } from '@/core/styles/theme'
+import { EColorTheme, getTheme } from '@/core/styles/theme'
 
-import { ERoutesAccess, ERoutesPaths, routes } from '@/config'
+import { routes } from '@/config'
 
 interface IAppProvider {
-   children: React.ReactNode;
+   children: JSX.Element;
 }
 
 const Loader = dynamic(
@@ -27,38 +29,30 @@ const Loader = dynamic(
 )
 
 const AppProvider: FC<IAppProvider> = ({ children }) => {
+   const dispatch = useAppDispatch()
    const router = useRouter()
+   const cookiesTheme = Cookies.get('theme') as EColorTheme
    const theme = useSelector(selectTheme)
-   const token = useSelector(selectToken)
-
-   const [ allowedToView, setAllowedToView ] = useState(false)
 
    useEffect(() => {
-      const route = routes.find(el => el.path === router.pathname)
-
-      const isAccessed = route ? (route.access === ERoutesAccess.GUEST && !token)
-         || (route.access === ERoutesAccess.AUTHENTICATED_USER && token)
-         || route.access === ERoutesAccess.FULL_ACCESS : false
-      setAllowedToView(isAccessed)
-
-      if (!isAccessed) {
-         router.push(token ? ERoutesPaths.DASHBOARD : ERoutesPaths.SIGN_IN)
+      if (cookiesTheme) {
+         dispatch(setTheme(cookiesTheme))
       }
-   }, [ router, token ])
+   }, [cookiesTheme, dispatch])
 
    const pageInfo = routes.find(({ path }) => path === router.pathname)
+
    return (
       <>
          <Head>
-            <title>{pageInfo?.title} | Fansee Wallet</title>
+            <title>{pageInfo?.title ? `${pageInfo.title} | Fansee Wallet` : 'Fansee Wallet'}</title>
             <meta name="description" content={pageInfo?.description}></meta>
          </Head>
          <ThemeProvider theme={getTheme(theme)}>
             <GlobalStyles/>
             <ToastCustomContainer/>
             <Loader/>
-
-            {allowedToView && children}
+            {children}
          </ThemeProvider>
       </>
    )

@@ -22,13 +22,15 @@ const ToggleTheme = () => {
 
    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
       setChecked(e.target.checked)
-      handleLoadingBefore(() => dispatch(
-         setTheme(
-            colorTheme.name === EColorTheme.light
-               ? EColorTheme.dark
-               : EColorTheme.light,
-         ),
-      ))
+      handleLoadingBefore(() => {
+            dispatch(setTheme(
+                  colorTheme.name === EColorTheme.light
+                     ? EColorTheme.dark
+                     : EColorTheme.light,
+               ),
+            )
+         }
+      )
    }
 
    return (

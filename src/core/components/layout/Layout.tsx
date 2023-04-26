@@ -1,16 +1,10 @@
-import dynamic from 'next/dynamic'
 import React, { FC, ReactNode } from 'react'
+
+import ShadowScrollbars from '@/core/components/ui/shadow-scrollbars/ShadowScrollbars'
 
 import Header from './header/Header'
 import Navbar from './navbar/Navbar'
 import * as S from './style'
-
-const ClientShadowScrollbars = dynamic(
-   () => import('@/core/components/ui/shadow-scrollbars/ShadowScrollbars'),
-   {
-      ssr: false,
-   }
-)
 
 const Layout: FC<{ children?: ReactNode }> = ({ children }) => (
    <S.LayoutWrapper>
@@ -18,12 +12,12 @@ const Layout: FC<{ children?: ReactNode }> = ({ children }) => (
          <Navbar/>
       </S.NavbarWrapper>
       <S.ContentWrapper>
-         <ClientShadowScrollbars>
+         <ShadowScrollbars>
             <Header/>
             <S.ContentOffset>
                {children || ''}
             </S.ContentOffset>
-         </ClientShadowScrollbars>
+         </ShadowScrollbars>
       </S.ContentWrapper>
    </S.LayoutWrapper>
 )

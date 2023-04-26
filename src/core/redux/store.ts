@@ -1,45 +1,47 @@
-import { configureStore, Middleware } from '@reduxjs/toolkit'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Action, AnyAction, combineReducers, configureStore, Middleware, ThunkAction, } from '@reduxjs/toolkit'
+import { createWrapper, HYDRATE } from 'next-redux-wrapper'
 import { useDispatch } from 'react-redux'
-import { combineReducers, Store } from 'redux'
-import { persistReducer, persistStore } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
 
 import { coreApi } from '@/core/redux/api'
 import { coreReducer } from '@/core/redux/slice'
-import { authReducer } from '@/modules/auth/redux/slice'
 import { transactionsReducer } from '@/modules/transactions/redux/slice'
+import { userReducer } from '@/modules/user/redux/slice'
 
-const rootReducer = combineReducers({
+const combinedReducer = combineReducers({
    app: coreReducer,
-   auth: authReducer,
+   user: userReducer,
    transactions: transactionsReducer,
    [coreApi.reducerPath]: coreApi.reducer,
 })
 
-const persistConfig = {
-   key: 'root',
-   storage,
-   whitelist: [ 'auth' ],
+const reducer: any = (state: ReturnType<typeof combinedReducer>, action: AnyAction) => {
+   if (action.type === HYDRATE) {
+      return {
+         ...state,
+         ...action.payload,
+      }
+   } else {
+      return combinedReducer(state, action)
+   }
 }
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+export const makeStore: any = () =>
+   configureStore({
+      reducer,
+      middleware: (getDefaultMiddleware) =>
+         getDefaultMiddleware().concat(coreApi.middleware as Middleware),
+   })
 
-const store: Store = configureStore({
-   reducer: persistedReducer,
-   devTools: process.env.NODE_ENV !== 'production',
-   middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware({
-         serializableCheck: {
-            ignoredActions: [ 'persist/PERSIST', 'persist/REHYDRATE' ],
-         },
-      }).concat(coreApi.middleware as Middleware),
-})
+type Store = ReturnType<typeof makeStore>;
 
-export type TRootState = ReturnType<typeof store.getState>;
-export type TAppDispatch = typeof store.dispatch;
+export type AppDispatch = Store['dispatch'];
+export type RootState = ReturnType<Store['getState']>;
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType,
+   RootState,
+   unknown,
+   Action<string>>;
 
-export const useAppDispatch: () => TAppDispatch = useDispatch
+export const wrapper = createWrapper(makeStore, { debug: true })
 
-export const persistor = persistStore(store)
-
-export default store
+export const useAppDispatch: () => AppDispatch = useDispatch

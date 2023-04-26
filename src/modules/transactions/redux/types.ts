@@ -23,3 +23,12 @@ export interface ICreateDepositPayload {
 export interface IDeleteDepositPayload {
    asset_id: number;
 }
+
+export interface ITransactions {
+   date: string;
+   type: "deposit" | 'withdrawal';
+   status: "in progress" | "done" | "decline"; // || pending, completed, failed
+   amount: number;
+   amount_usdt: number;
+   asset: ICurrency;
+}

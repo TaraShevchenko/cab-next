@@ -6,6 +6,7 @@
       "dev": "next dev",
       "build": "next build",
       "start": "next start",
+      "export": "next export",
       "lint": "next lint"
    },
    "dependencies": {
@@ -19,6 +20,7 @@
       "js-cookie": "^3.0.1",
       "next": "13.2.4",
       "next-cookies": "^2.0.3",
+      "next-redux-wrapper": "^8.1.0",
       "react": "18.2.0",
       "react-copy-to-clipboard": "^5.1.0",
       "react-custom-scrollbars-2": "^4.5.0",

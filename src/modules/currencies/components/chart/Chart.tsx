@@ -1,11 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { useSelector } from 'react-redux'
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, } from 'recharts'
+import { useTheme } from 'styled-components'
 
-import { selectTheme } from '@/core/redux/selectors'
-
-import { getTheme } from '@/core/styles/theme'
+import { EColorTheme, getTheme } from '@/core/styles/theme'
 
 import * as S from './style'
 import { IChartProps, ICustomDot, ICustomTooltip, IPoint } from './types'
@@ -28,8 +26,8 @@ const CustomTooltip: React.FC<ICustomTooltip> = (props) => {
 }
 
 const CustomDot: React.FC<ICustomDot> = (props) => {
-   const themeName = useSelector(selectTheme)
-   const theme = getTheme(themeName)
+   const { colorTheme } = useTheme() as any
+   const theme = getTheme(colorTheme?.name as EColorTheme || EColorTheme.dark)
    const { cx, cy, index, points, setActivePoint } = props
 
    useEffect(() => {
@@ -66,8 +64,8 @@ const CustomDot: React.FC<ICustomDot> = (props) => {
 }
 
 const Chart: React.FC<IChartProps> = ({ height = 190, data }) => {
-   const themeName = useSelector(selectTheme)
-   const theme = getTheme(themeName)
+   const { colorTheme } = useTheme() as any
+   const theme = getTheme(colorTheme?.name as EColorTheme || EColorTheme.dark)
    const areaRef = useRef<any>(null)
 
    const [ lastPointPosition, setLastPointPosition ] = useState(0)

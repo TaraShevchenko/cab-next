@@ -6,4 +6,5 @@ const SignInPage = () => {
    return <SignPageTemplate config={signInCopyright} Form={SignInForm}/>
 }
 
+
 export default SignInPage

@@ -1,5 +1,11 @@
 import { StaticImageData } from 'next/image'
 
+import { ICurrency } from '@/modules/currencies/redux/types'
+
+export interface IUserState {
+   userData: IUserData | null;
+}
+
 export interface IUserData {
    id: string;
    user_image: string;
@@ -42,4 +48,14 @@ export interface IUserByEmailRequestPayload {
 
 export interface IUserByIdRequestPayload {
    id: number;
+}
+
+export interface INotification {
+   id: number;
+   type: 'deposit' | 'withdrawal' | 'bonus' | 'referral';
+   currency?: ICurrency;
+   amount?: number;
+   amount_fst?: number;
+   status?: 'successfully' | 'failed'; // || completed, failed
+   referral_name?: string;
 }

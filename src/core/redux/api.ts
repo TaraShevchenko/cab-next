@@ -1,26 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { BaseQueryApi, createApi, FetchArgs, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import Cookies from 'js-cookie'
 
 import { setDisabledLoading, setLoading } from '@/core/redux/slice'
-import { TRootState } from '@/core/redux/store'
-import { logOut, setCredentials } from '@/modules/auth/redux/slice'
-import { IResponseToken } from '@/modules/auth/redux/types'
+import { RootState } from '@/core/redux/store'
+import { IAuthResponse } from '@/modules/auth/redux/types'
 
 interface ApiResponse<T> {
    data: T;
 }
 
 interface IApi extends BaseQueryApi {
-   getState: () => TRootState;
+   getState: () => RootState;
 }
 
 const baseQuery = fetchBaseQuery({
    baseUrl: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000',
    credentials: 'include',
-   prepareHeaders: (headers, { getState }) => {
-      const token = (getState() as TRootState)?.auth?.token
+   prepareHeaders: (headers) => {
+      const token = Cookies.get('token')
       if (token) {
-         headers.set('authorization', `Bearer ${token}`)
+         headers.set('authorization', token)
       }
       return headers
    }
@@ -32,13 +32,14 @@ const baseQueryWithRefreshToken = async (args: string | FetchArgs, api: IApi, ex
    let result = await baseQuery(args, api, extraOptions)
 
    if (result?.error?.status === 403) {
-      const response = await baseQuery('/refresh', api, extraOptions) as ApiResponse<IResponseToken>
+      const response = await baseQuery('/refresh', api, extraOptions) as ApiResponse<IAuthResponse>
       if (response?.data) {
-         const id = api.getState().auth.id
-         api.dispatch(setCredentials({ token: response.data.token, id }))
+         Cookies.set('token', response.data.token)
+         Cookies.set('user_id', response.data.id)
          result = await baseQuery(args, api, extraOptions)
       } else {
-         api.dispatch(logOut())
+         Cookies.set('token', '')
+         Cookies.set('user_id', '')
       }
    }
 

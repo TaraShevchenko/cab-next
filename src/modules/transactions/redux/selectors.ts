@@ -1,3 +1,3 @@
-import { TRootState } from '@/core/redux/store';
+import { RootState } from '@/core/redux/store';
 
-export const selectActiveDepositCurrency = (state: TRootState) => state.transactions.activeDepositCurrency
+export const selectActiveDepositCurrency = (state: RootState) => state.transactions.activeDepositCurrency

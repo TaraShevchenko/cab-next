@@ -56,3 +56,13 @@ export const routes = [
       description: 'Check your transactions',
    },
 ]
+
+export const API_ROUTES = {
+   LOGIN: '/login',
+   REGISTRATION: '/registration',
+   LOGOUT: '/logout',
+   USER: (id: string) => `/users/${id}`,
+   USER_BALANCE: (id: string) => `/users/${id}/balance`,
+   USER_PASSWORD: (id: string) => `/users/${id}/password`,
+   USERS: '/users'
+}

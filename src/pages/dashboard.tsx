@@ -1,1 +1,1 @@
-export { default } from '@/modules/user/pages/dashboard/DashboardPage'
+export { default, getServerSideProps } from '@/modules/user/pages/dashboard/DashboardPage'

@@ -1,10 +1,17 @@
 import { GetServerSideProps } from 'next'
-import nextCookies from 'next-cookies';
+import nextCookies from 'next-cookies'
 import React from 'react'
+
+import { RootState, wrapper } from '@/core/redux/store'
+import { updateUserData } from '@/modules/user/redux/slice'
+import { IUserData } from '@/modules/user/redux/types'
 
 import Layout from '@/core/components/layout/Layout'
 
+import { baseFetchToNext } from '@/core/utils/baseFetchToNext'
+
 import Dashboard from '../../components/dashboard/Dashboard'
+import { API_ROUTES } from '@/config'
 
 const DashboardPage = () => {
    return (
@@ -14,19 +21,15 @@ const DashboardPage = () => {
    )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params, req }) => {
-   const cookies = nextCookies({ req });
-   const res = await fetch(`/users/${cookies.user_id}`, {
-      headers: {
-         Authorization: `Bearer ${cookies.token}`,
-      },
-   });
-   const user = await res.json();
+export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps((store: RootState) => async ({ req }) => {
+   const cookies = nextCookies({ req })
+
+   const user: IUserData = await baseFetchToNext(API_ROUTES.USER(cookies?.user_id || ''), req, {})
+   store.dispatch(updateUserData(user))
+
    return {
-      props: {
-         user,
-      },
-   };
-}
+      props: {},
+   }
+})
 
 export default DashboardPage

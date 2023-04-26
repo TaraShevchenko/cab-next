@@ -7,9 +7,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 
 import { selectTheme } from '@/core/redux/selectors'
-import { useAppDispatch } from '@/core/redux/store'
 import { useRegistrationMutation } from '@/modules/auth/redux/api'
-import { setCredentials } from '@/modules/auth/redux/slice'
 
 import Button from '@/core/components/ui/button/Button'
 import Checkbox from '@/core/components/ui/checkbox/Checkbox'
@@ -29,7 +27,6 @@ import { ERoutesPaths } from '@/config'
 
 const SignUpForm = () => {
    const router = useRouter()
-   const dispatch = useAppDispatch()
    const theme = useSelector(selectTheme)
 
    const handleLoadingBefore = useLoading()
@@ -75,7 +72,6 @@ const SignUpForm = () => {
             handleLoadingBefore(() => {
                Cookies.set('token', response.data.token)
                Cookies.set('user_id', response.data.id)
-               dispatch(setCredentials(response.data))
                router.push(ERoutesPaths.DASHBOARD)
                notificationContainer('Sign up succeed !', 'success')
             })

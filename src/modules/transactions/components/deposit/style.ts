@@ -382,6 +382,8 @@ export const DepositPriceRateWrapper = styled.div(
       color: ${colors.fringyFlower};
 
       svg {
+         width: 20px;
+         height: 28px;
          margin-right: 15px;
       }
 

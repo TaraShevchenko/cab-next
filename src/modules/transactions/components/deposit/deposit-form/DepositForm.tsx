@@ -138,7 +138,7 @@ const DepositForm = () => {
                </S.DepositPriceCurrencyWrapper>
 
                <S.DepositPriceRateWrapper>
-                  <LuminousLogo width="20" height="28"/>
+                  <LuminousLogo/>
                   1
                   ≈
                   <Image
@@ -226,7 +226,7 @@ const DepositForm = () => {
             <S.DepositDataTitle>
                Send
                <S.DepositDataTitleHighlighted>
-                  {DEPOSIT_DATA?.amount} {DEPOSIT_DATA?.asset.asset_code}
+                  &nbsp;{DEPOSIT_DATA?.amount} {DEPOSIT_DATA?.asset.asset_code}&nbsp;
                </S.DepositDataTitleHighlighted>
                using QR code or copy wallet address
             </S.DepositDataTitle>

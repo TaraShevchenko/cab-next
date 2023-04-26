@@ -7,9 +7,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 
 import { selectTheme } from '@/core/redux/selectors'
-import { useAppDispatch } from '@/core/redux/store'
 import { useLoginMutation } from '@/modules/auth/redux/api'
-import { setCredentials } from '@/modules/auth/redux/slice'
 
 import Button from '@/core/components/ui/button/Button'
 import InputWithLabel from '@/core/components/ui/input-with-label/InputWithLabel'
@@ -31,7 +29,6 @@ import { ERoutesPaths } from '@/config'
 
 const SignInForm = () => {
    const router = useRouter()
-   const dispatch = useAppDispatch()
    const theme = useSelector(selectTheme)
 
    const handleLoadingBefore = useLoading()
@@ -69,9 +66,9 @@ const SignInForm = () => {
             handleLoadingBefore(() => {
                Cookies.set('token', response.data.token)
                Cookies.set('user_id', response.data.id)
-               dispatch(setCredentials(response.data))
                router.push(ERoutesPaths.DASHBOARD)
                notificationContainer('Sign in succeed !', 'success')
+               return undefined
             })
             reset()
             return;
@@ -80,11 +77,12 @@ const SignInForm = () => {
          notificationContainer('Sign in failed !', 'error')
       }
 
-      dispatch(setCredentials({
-         id: 'qwe',
-         token: 'qwe',
-      }))
-      router.push(ERoutesPaths.DASHBOARD)
+      // Todo - remove this after deploy backend
+      handleLoadingBefore(() => {
+         Cookies.set('token', '12345')
+         Cookies.set('user_id', '12345')
+         router.push(ERoutesPaths.DASHBOARD)
+      })
    }
 
    const handleSubmitForm = () => {

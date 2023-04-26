@@ -1,4 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import Cookies from 'js-cookie'
 
 import { EColorTheme } from '@/core/styles/theme'
 
@@ -18,14 +19,15 @@ export const slice = createSlice({
    name: 'core',
    initialState,
    reducers: {
-      setTheme: (state, { payload }) => {
+      setTheme: (state, { payload }: PayloadAction<EColorTheme>) => {
          state.theme = payload
+         Cookies.set('theme', payload)
       },
-      setLoading: (state, { payload }) => {
+      setLoading: (state, { payload }: PayloadAction<boolean>) => {
          state.loading = payload
       },
-      setDisabledLoading: (state, { payload }) => {
-         state.loading = payload
+      setDisabledLoading: (state, { payload }: PayloadAction<boolean>) => {
+         state.disabledLoading = payload
       },
    },
 })
