@@ -66,5 +66,3 @@ export const API_ROUTES = {
    USER_PASSWORD: (id: string) => `/users/${id}/password`,
    USERS: '/users'
 }
-
-export const test = {test: 'test1'}
