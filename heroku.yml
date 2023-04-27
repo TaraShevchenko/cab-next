@@ -1,6 +1,5 @@
 build:
-  docker:
-    web: docker/production/Dockerfile
+  web: make build-production
 run:
   web: make start-production
   
