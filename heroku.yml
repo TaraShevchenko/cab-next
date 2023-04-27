@@ -2,5 +2,5 @@ build:
   docker:
     web: docker/production/Dockerfile
 run:
-  web: node server.js -p $PORT
+  web: make start-production
   
