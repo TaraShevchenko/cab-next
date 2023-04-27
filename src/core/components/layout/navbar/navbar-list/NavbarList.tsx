@@ -17,7 +17,7 @@ const NavbarList: FC<{ handleItemClick: () => void }> = ({ handleItemClick }) =>
             <S.ListItem key={name} isActive={pathname === url}>
                <NavLink to={url} onClick={() => onLinkClick(url)}>
                   <S.ListItemIcon>
-                     <Icon/>
+                     <Icon />
                   </S.ListItemIcon>
                   <S.ListItemText>{name}</S.ListItemText>
                </NavLink>

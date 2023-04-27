@@ -16,7 +16,6 @@ export const LoaderWrapper = styled.div<{ isActive: boolean }>(
       pointer-events: ${isActive ? 'unset' : 'none'};
       transition: opacity 0.2s ease-in-out, background-color 0.6s ease-in-out;
 
-
       .loader-wrapper {
          position: fixed;
          z-index: 9000;
@@ -95,11 +94,12 @@ export const LoaderWrapper = styled.div<{ isActive: boolean }>(
          66% {
             stroke: ${colorTheme.loader.iconColor};
          }
-         80%, 90% {
+         80%,
+         90% {
             stroke: ${colorTheme.loader.iconColor};
          }
       }
-   `,
+   `
 )
 
 export const LoaderBackground = styled.span(
@@ -108,7 +108,8 @@ export const LoaderBackground = styled.span(
       height: 160px;
       display: inline-block;
       vertical-align: middle;
-      filter: drop-shadow(0px 0px 20px ${colors.accentHalfTransparent}) drop-shadow(0px 0px 20px ${colors.accentHalfTransparent});
+      filter: drop-shadow(0px 0px 20px ${colors.accentHalfTransparent})
+         drop-shadow(0px 0px 20px ${colors.accentHalfTransparent});
       background: ${colorTheme.loader.background};
       border-radius: 100%;
       transition: all 0.6s ease-in-out;
@@ -117,7 +118,7 @@ export const LoaderBackground = styled.span(
          width: 80px;
          height: 80px;
       }
-   `,
+   `
 )
 
 export const LoaderLogo = styled.span(
@@ -136,5 +137,5 @@ export const LoaderLogo = styled.span(
             height: 32px;
          }
       }
-   `,
+   `
 )

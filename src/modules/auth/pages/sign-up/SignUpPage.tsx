@@ -3,7 +3,7 @@ import SignPageTemplate from '@/modules/auth/components/sign-page-template/SignP
 import SignUpForm from '@/modules/auth/components/sign-up-form/SignUpForm'
 
 const SignUpPage = () => {
-   return <SignPageTemplate config={signUpCopyright} Form={SignUpForm}/>
+   return <SignPageTemplate config={signUpCopyright} Form={SignUpForm} />
 }
 
 export default SignUpPage

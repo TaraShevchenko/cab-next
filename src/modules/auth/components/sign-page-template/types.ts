@@ -1,14 +1,14 @@
-import { StaticImageData } from 'next/image';
+import { StaticImageData } from 'next/image'
 import { ElementType } from 'react'
 
 export interface SignPageTemplateConfig {
-   text: string;
-   linkText: string;
-   linkUrl: string;
-   image: StaticImageData;
+   text: string
+   linkText: string
+   linkUrl: string
+   image: StaticImageData
 }
 
 export interface SignPageTemplateProps {
-   config: SignPageTemplateConfig;
-   Form: ElementType;
+   config: SignPageTemplateConfig
+   Form: ElementType
 }

@@ -18,7 +18,7 @@ const akzidenz = localFont({
 
 const manrope = Manrope({
    weight: '400',
-   subsets: [ 'latin' ],
+   subsets: ['latin'],
    variable: '--font-manrope',
 })
 
@@ -35,7 +35,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 MyApp.getInitialProps = async (appContext: AppContext) => {
    const appProps = await App.getInitialProps(appContext)
    const { req, pathname } = appContext.ctx
-   
    const cookies = nextCookies({ req })
    const token = cookies?.token
    const route = routes.find((el) => el.path === pathname)

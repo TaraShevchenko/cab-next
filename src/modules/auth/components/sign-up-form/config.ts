@@ -29,6 +29,6 @@ export const signUpFormValidationSchema = yup.object().shape({
       .matches(/[^\w]/, 'Password requires a special character'),
    [signUpFormNames.confirmPassword]: yup
       .string()
-      .oneOf([ yup.ref(signUpFormNames.password) ], 'Passwords do not match')
+      .oneOf([yup.ref(signUpFormNames.password)], 'Passwords do not match')
       .required('Сonfirm password is required'),
 })

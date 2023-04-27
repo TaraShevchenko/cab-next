@@ -1,6 +1,6 @@
 import HCaptcha from '@hcaptcha/react-hcaptcha'
 import { yupResolver } from '@hookform/resolvers/yup'
-import Cookies from 'js-cookie';
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
@@ -14,7 +14,7 @@ import InputWithLabel from '@/core/components/ui/input-with-label/InputWithLabel
 import {
    signInFormInitialValues,
    signInFormNames,
-   signInFormValidationSchema
+   signInFormValidationSchema,
 } from '@/modules/auth/components/sign-in-form/config'
 import * as S from '@/modules/auth/components/sign-page-template/styles'
 
@@ -32,10 +32,10 @@ const SignInForm = () => {
    const theme = useSelector(selectTheme)
 
    const handleLoadingBefore = useLoading()
-   const [ handleLogin ] = useLoginMutation()
+   const [handleLogin] = useLoginMutation()
 
-   const [ captchaIsVisible, setCaptchaIsVisible ] = useState(false)
-   const [ captchaToken, setCaptchaToken ] = useState('')
+   const [captchaIsVisible, setCaptchaIsVisible] = useState(false)
+   const [captchaToken, setCaptchaToken] = useState('')
 
    const {
       reset,
@@ -43,11 +43,11 @@ const SignInForm = () => {
       register,
       handleSubmit,
       getValues,
-      formState: { errors }
+      formState: { errors },
    } = useForm({
       mode: 'onSubmit',
       defaultValues: signInFormInitialValues,
-      resolver: yupResolver(signInFormValidationSchema)
+      resolver: yupResolver(signInFormValidationSchema),
    })
 
    const handleSignIn = async () => {
@@ -57,7 +57,7 @@ const SignInForm = () => {
          const response = await handleLogin({
             email: values?.email || '',
             password: values?.password || '',
-            totp: captchaToken
+            totp: captchaToken,
          })
 
          if ('error' in response) {
@@ -71,13 +71,13 @@ const SignInForm = () => {
                return undefined
             })
             reset()
-            return;
+            return
          }
       } catch (err) {
          notificationContainer('Sign in failed !', 'error')
       }
 
-      // Todo - remove this after deploy backend
+      // TODO: remove this after deploy backend
       handleLoadingBefore(() => {
          Cookies.set('token', '12345')
          Cookies.set('user_id', '12345')
@@ -105,40 +105,47 @@ const SignInForm = () => {
             <Controller
                control={control}
                name={signInFormNames.email}
-               render={({ field }) => (<InputWithLabel
-                  label="Email"
-                  icon={() => <Mail/>}
-                  error={errors[signInFormNames.email]}
-                  {...register(signInFormNames.email)}
-                  {...field}
-               />)}
+               render={({ field }) => (
+                  <InputWithLabel
+                     label="Email"
+                     icon={() => <Mail />}
+                     error={errors[signInFormNames.email]}
+                     {...register(signInFormNames.email)}
+                     {...field}
+                  />
+               )}
             />
             <Controller
                control={control}
                name={signInFormNames.password}
-               render={({ field }) => (<InputWithLabel
-                  type="password"
-                  label="Password"
-                  icon={() => <LockClosed/>}
-                  error={errors[signInFormNames.password]}
-                  {...register(signInFormNames.password)}
-                  {...field}
-               />)}
+               render={({ field }) => (
+                  <InputWithLabel
+                     type="password"
+                     label="Password"
+                     icon={() => <LockClosed />}
+                     error={errors[signInFormNames.password]}
+                     {...register(signInFormNames.password)}
+                     {...field}
+                  />
+               )}
             />
 
-            {captchaIsVisible && <S.CaptchaWrapper>
-               <HCaptcha
-                  theme={theme}
-                  onVerify={handleVerificationSuccess}
-                  sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || ''}
-               />
-            </S.CaptchaWrapper>}
+            {captchaIsVisible && (
+               <S.CaptchaWrapper>
+                  <HCaptcha
+                     theme={theme}
+                     onVerify={handleVerificationSuccess}
+                     sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || ''}
+                  />
+               </S.CaptchaWrapper>
+            )}
 
             <S.ButtonWrapper>
-               <Button type="submit" variant="outlined" disabled={captchaIsVisible && !captchaToken}>Sign In</Button>
+               <Button type="submit" variant="outlined" disabled={captchaIsVisible && !captchaToken}>
+                  Sign In
+               </Button>
             </S.ButtonWrapper>
          </S.Form>
-
       </S.FormWrapper>
    )
 }

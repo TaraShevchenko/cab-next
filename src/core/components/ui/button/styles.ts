@@ -7,8 +7,7 @@ import { ButtonProps } from './types'
 const outlined = css`
    font-family: ${({ theme }) => theme.fonts.primary};
    color: ${({ theme }) => theme.colorTheme.buttons.primary.color};
-   background-color: ${({ theme }) =>
-   theme.colorTheme.buttons.primary.backgroundColor};
+   background-color: ${({ theme }) => theme.colorTheme.buttons.primary.backgroundColor};
    border: 2px solid ${({ theme }) => theme.colorTheme.buttons.primary.borderColor};
 
    transition: all 0.2s ease-in-out;
@@ -21,8 +20,7 @@ const outlined = css`
 const primary = css`
    font-family: ${({ theme }) => theme.fonts.primary};
    color: ${({ theme }) => theme.colorTheme.buttons.primary.color};
-   background-color: ${({ theme }) =>
-   theme.colorTheme.buttons.primary.backgroundColor};
+   background-color: ${({ theme }) => theme.colorTheme.buttons.primary.backgroundColor};
    border: 2px solid ${({ theme }) => theme.colorTheme.buttons.primary.backgroundColor};
 
    transition: all 0.2s ease-in-out;
@@ -67,7 +65,7 @@ export const styledButton = css<ButtonProps>`
    border-radius: 20px;
    white-space: nowrap;
 
-   opacity: ${({ disabled }) => disabled ? 0.5 : 1};
+   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
 
    &:disabled {
       pointer-events: none;
@@ -78,20 +76,12 @@ export const styledButton = css<ButtonProps>`
 `
 
 export const Button = styled.button<ButtonProps>(
-   ({
-      fullWidth = false,
-      disabled,
-      variant = 'primary',
-   }) => css`
+   () => css`
       ${styledButton}
-   `,
+   `
 )
 export const Span = styled.span<ButtonProps>(
-   ({
-      fullWidth = false,
-      disabled,
-      variant = 'primary',
-   }) => css`
+   () => css`
       ${styledButton}
-   `,
+   `
 )

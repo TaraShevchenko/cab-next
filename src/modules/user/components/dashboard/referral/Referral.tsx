@@ -19,23 +19,19 @@ const Referral = () => {
          <S.CardTitle>Referral link</S.CardTitle>
          <S.ReferralWrapper>
             <S.ReferralLinkWrapper>
-               <S.ReferralLink>
-                  {REFERRAL_DATA?.link}
-               </S.ReferralLink>
+               <S.ReferralLink>{REFERRAL_DATA?.link}</S.ReferralLink>
                <CopyToClipboard onCopy={handleCopied} text={REFERRAL_DATA?.link || ''}>
                   <S.ReferralCopyLink>
-                     <CopyIcon/>
+                     <CopyIcon />
                   </S.ReferralCopyLink>
                </CopyToClipboard>
             </S.ReferralLinkWrapper>
 
             <S.ReferralQRWrapper>
-               <S.ReferralQRText>
-                  Or use QR Code
-               </S.ReferralQRText>
+               <S.ReferralQRText>Or use QR Code</S.ReferralQRText>
                <S.ReferralQrWrapper>
                   <S.ReferralQr>
-                     <S.ReferralQRImage height="155" width="155" src={REFERRAL_DATA?.qr} alt="qrCode"/>
+                     <S.ReferralQRImage height="155" width="155" src={REFERRAL_DATA?.qr} alt="qrCode" />
                   </S.ReferralQr>
                </S.ReferralQrWrapper>
             </S.ReferralQRWrapper>
@@ -43,18 +39,16 @@ const Referral = () => {
 
          <Button variant="outlined">
             <S.ButtonIconWrapper>
-               <ReferralIcon/>
+               <ReferralIcon />
             </S.ButtonIconWrapper>
             Open referrals list
          </Button>
 
          <S.ReferralQRMobileWrapper>
-            <S.ReferralQRText>
-               Or use QR Code
-            </S.ReferralQRText>
+            <S.ReferralQRText>Or use QR Code</S.ReferralQRText>
             <S.ReferralQrWrapper>
                <S.ReferralQr>
-                  <S.ReferralQRImage height="210" width="210" src={REFERRAL_DATA?.qr} alt={'qrCode'}/>
+                  <S.ReferralQRImage height="210" width="210" src={REFERRAL_DATA?.qr} alt={'qrCode'} />
                </S.ReferralQr>
             </S.ReferralQrWrapper>
          </S.ReferralQRMobileWrapper>

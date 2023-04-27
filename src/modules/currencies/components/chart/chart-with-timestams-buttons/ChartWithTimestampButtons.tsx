@@ -9,17 +9,16 @@ import * as S from './style'
 import Chart from '../Chart'
 
 const TIMESTAMPS: IChartTimestamp[] = [
-   { name: '1H', value: EChartTimestampValue.HOUR, },
-   { name: '1D', value: EChartTimestampValue.DAY, },
-   { name: '1W', value: EChartTimestampValue.WEEK, },
-   { name: '1M', value: EChartTimestampValue.MONTH, },
-   { name: '1Y', value: EChartTimestampValue.YEAR, },
-   { name: 'All', value: EChartTimestampValue.ALL, },
+   { name: '1H', value: EChartTimestampValue.HOUR },
+   { name: '1D', value: EChartTimestampValue.DAY },
+   { name: '1W', value: EChartTimestampValue.WEEK },
+   { name: '1M', value: EChartTimestampValue.MONTH },
+   { name: '1Y', value: EChartTimestampValue.YEAR },
+   { name: 'All', value: EChartTimestampValue.ALL },
 ]
 
-
 const ChartWithTimestampButtons = () => {
-   const [ activeStamp, setActiveStamp ] = useState(EChartTimestampValue.ALL)
+   const [activeStamp, setActiveStamp] = useState(EChartTimestampValue.ALL)
 
    const handleGetChart = (timestamp: EChartTimestampValue) => {
       setActiveStamp(timestamp)
@@ -27,17 +26,17 @@ const ChartWithTimestampButtons = () => {
 
    return (
       <>
-         {CHART_DATA && <Chart data={CHART_DATA}/>}
+         {CHART_DATA && <Chart data={CHART_DATA} />}
          <S.ChartButtonGroup>
-            {TIMESTAMPS.map(({ name, value }) =>
-               (<Button
+            {TIMESTAMPS.map(({ name, value }) => (
+               <Button
                   key={name}
                   onClick={() => handleGetChart(value)}
                   variant={activeStamp === value ? 'outlined' : 'primary'}
                >
                   {name}
-               </Button>))
-            }
+               </Button>
+            ))}
          </S.ChartButtonGroup>
       </>
    )

@@ -16,7 +16,6 @@ export const NavbarWrapper = styled.div<{ isFull: boolean }>(
       position: relative;
       z-index: 100;
 
-
       ${down(breakpoints.xxlg)} {
          position: absolute;
          max-width: ${isFull ? '319' : '80'}px;
@@ -66,7 +65,7 @@ export const List = styled.ul(
 
       ${ListItem} {
          margin-bottom: 40px;
-         
+
          ${down(breakpoints.xxlg)} {
             margin-bottom: 25px;
          }
@@ -79,7 +78,7 @@ export const List = styled.ul(
 )
 
 export const ListItem = styled.li<{ isActive?: boolean; isBurger?: boolean }>(
-   ({ theme: { colorTheme }, isActive, isBurger }) => css`
+   ({ theme: { colorTheme }, isActive }) => css`
       ${flex.alignItemsCenter}
       gap: 15px;
       cursor: pointer;

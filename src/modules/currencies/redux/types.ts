@@ -1,14 +1,14 @@
 export interface ICurrency {
-   id: number;
-   asset_name: string;
-   asset_code: string;
-   asset_image: string;
-   chain_code: string;
-   chain_image: string;
+   id: number
+   asset_name: string
+   asset_code: string
+   asset_image: string
+   chain_code: string
+   chain_image: string
 }
 
 export interface IChartPoint {
-   price: number;
+   price: number
 }
 
 export enum EChartTimestampValue {
@@ -21,10 +21,10 @@ export enum EChartTimestampValue {
 }
 
 export interface IChartTimestamp {
-   name: string;
-   value: EChartTimestampValue;
+   name: string
+   value: EChartTimestampValue
 }
 
 export interface IExchangeRateResponse {
-   exchange_rate: number;
+   exchange_rate: number
 }

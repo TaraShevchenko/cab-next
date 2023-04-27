@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  fancee-development:
+    container_name: fancee-development-container
+    build:
+      context: ../../
+      dockerfile: docker/development/Dockerfile
+    image: fancee-development
+    volumes:
+      - ../../:/app
+      - ../../.next:/app/.next
+      - ../../public:/app/public
+      - /app/node_modules
+    ports:
+      - '3000:3000'
+    restart: always

@@ -7,7 +7,7 @@ import * as S from './style'
 const ToastCustomContainer = () => {
    return (
       <S.ToastContainer>
-         <ToastContainer/>
+         <ToastContainer />
       </S.ToastContainer>
    )
 }

@@ -10,7 +10,7 @@ import { IInputWithLabel } from './types'
 
 const InputWithLabel = (props: IInputWithLabel, ref: Ref<HTMLDivElement>) => {
    const { type, label, error, value } = props
-   const [ isOnTop, setIsOnTop ] = useState(false)
+   const [isOnTop, setIsOnTop] = useState(false)
 
    const handleFocus = () => {
       setIsOnTop(true)
@@ -23,19 +23,19 @@ const InputWithLabel = (props: IInputWithLabel, ref: Ref<HTMLDivElement>) => {
 
    useEffect(() => {
       value ? setIsOnTop(true) : setIsOnTop(false)
-   }, [ value ])
+   }, [value])
 
    return (
       <S.Wrapper isOnTop={isOnTop}>
-         <S.Label>
-            {label}
-         </S.Label>
-         {type === 'password'
-            ? <InputPassword {...props} ref={ref} onFocus={handleFocus} onBlur={handleBlur}/>
-            : <Input {...props} ref={ref} onFocus={handleFocus} onBlur={handleBlur}/>}
+         <S.Label>{label}</S.Label>
+         {type === 'password' ? (
+            <InputPassword {...props} ref={ref} onFocus={handleFocus} onBlur={handleBlur} />
+         ) : (
+            <Input {...props} ref={ref} onFocus={handleFocus} onBlur={handleBlur} />
+         )}
          {error && (
             <S.Error>
-               <DangerCircle/>
+               <DangerCircle />
                {error?.message}
             </S.Error>
          )}

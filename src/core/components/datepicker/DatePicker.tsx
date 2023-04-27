@@ -17,11 +17,11 @@ import * as S from './style'
 import 'react-datepicker/dist/react-datepicker.css'
 
 const DatePicker = () => {
-   const [ startDate, setStartDate ] = useState<Date | null>(null)
-   const [ endDate, setEndDate ] = useState<Date | null>(null)
-   const onChange = (dates: [ (Date | null), (Date | null) ]) => {
+   const [startDate, setStartDate] = useState<Date | null>(null)
+   const [endDate, setEndDate] = useState<Date | null>(null)
+   const onChange = (dates: [Date | null, Date | null]) => {
       if (dates) {
-         const [ start, end ] = dates
+         const [start, end] = dates
          setStartDate(start)
          setEndDate(end)
          if (start && end) {
@@ -30,7 +30,7 @@ const DatePicker = () => {
       }
    }
 
-   const [ isOpenDropdown, setIsOpenDropdown ] = useState(false)
+   const [isOpenDropdown, setIsOpenDropdown] = useState(false)
    const handleToggleDropdown = () => setIsOpenDropdown(true)
    const handleCloseDropdown = () => setIsOpenDropdown(false)
    const wrapperRef = useRef(null)
@@ -50,12 +50,14 @@ const DatePicker = () => {
                   readOnly
                   label="Date"
                   placeholder="Choose date"
-                  icon={() => <CalendarIcon/>}
+                  icon={() => <CalendarIcon />}
                   onFocus={handleToggleDropdown}
-                  value={startDate && endDate ? `${convertDateToDDMMYY(startDate)} - ${convertDateToDDMMYY(endDate)}` : ''}
+                  value={
+                     startDate && endDate ? `${convertDateToDDMMYY(startDate)} - ${convertDateToDDMMYY(endDate)}` : ''
+                  }
                />
                <S.DatePikerInputArrow>
-                   <ArrowIcon/>
+                  <ArrowIcon />
                </S.DatePikerInputArrow>
             </S.DatePikerInput>
 
@@ -73,7 +75,7 @@ const DatePicker = () => {
 
          <S.DatePikerClearButton isActive={!!(startDate && endDate)}>
             <Button onClick={onClear}>
-               <CloseIcon/> Clear
+               <CloseIcon /> Clear
             </Button>
          </S.DatePikerClearButton>
       </S.DatePikerWrapper>

@@ -2,13 +2,27 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started using Docker
 
-```bash
-docker-compose build
+For, run the development server:
 
-docker-compose up
+```bash
+make build-development
+# then
+make start-development
+# to stop
+make stop-development
 ```
 
-## Getting Started
+For, run the production server:
+
+```bash
+make build-production
+# then
+make start-production
+# to stop
+make stop-production
+```
+
+## Getting Started Locally
 
 First, run the development server:
 

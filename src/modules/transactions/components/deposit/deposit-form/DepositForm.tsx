@@ -32,13 +32,15 @@ const DepositForm = () => {
       [depositFormNames.amount]: yup
          .string()
          .required('Amount is required')
-         .test('min', `The minimum amount of the warehouse order is ${EXCHANGE_RATE.exchange_rate} ${activeCurrency?.asset_code}`,
-            (value) => !!EXCHANGE_RATE.exchange_rate && (Number(value) >= EXCHANGE_RATE.exchange_rate)),
+         .test(
+            'min',
+            `The minimum amount of the warehouse order is ${EXCHANGE_RATE.exchange_rate} ${activeCurrency?.asset_code}`,
+            (value) => !!EXCHANGE_RATE.exchange_rate && Number(value) >= EXCHANGE_RATE.exchange_rate
+         ),
       [depositFormNames.converted]: yup
          .string()
          .required('Converted is required')
-         .test('min', `The minimum amount of the warehouse order is 0.1 FST`,
-            (value) => Number(value) >= 0.1)
+         .test('min', `The minimum amount of the warehouse order is 0.1 FST`, (value) => Number(value) >= 0.1),
    })
 
    const {
@@ -47,23 +49,23 @@ const DepositForm = () => {
       register,
       setValue,
       handleSubmit,
-      formState: { errors }
+      formState: { errors },
    } = useForm({
       mode: 'onSubmit',
       defaultValues: depositFormInitialValues,
-      resolver: yupResolver(depositFormValidationSchema)
+      resolver: yupResolver(depositFormValidationSchema),
    })
 
    useEffect(() => {
       reset()
-   }, [ reset, activeCurrencyId ])
+   }, [reset, activeCurrencyId])
 
    useEffect(() => {
       if (DEPOSIT_DATA && EXCHANGE_RATE.exchange_rate && DEPOSIT_DATA?.asset?.id === activeCurrencyId) {
          setValue(depositFormNames.amount, DEPOSIT_DATA?.amount.toString())
          setValue(depositFormNames.converted, (DEPOSIT_DATA?.amount * EXCHANGE_RATE.exchange_rate).toString())
       }
-   }, [ setValue, activeCurrencyId ])
+   }, [setValue, activeCurrencyId])
 
    const handleChangeAmount = (event: ChangeEvent<HTMLInputElement>) => {
       const value = event?.target?.value
@@ -83,7 +85,8 @@ const DepositForm = () => {
          setValue(depositFormNames.amount, '')
       }
    }
-
+   // TODO: Remove eslint-disable after using the onDepositSubmit function correctly
+   // eslint-disable-next-line @typescript-eslint/no-unused-vars
    const onDepositSubmit = async ({ amount }: FieldValues) => {
       if (activeCurrencyId) {
          // await createDeposit({
@@ -99,7 +102,7 @@ const DepositForm = () => {
       }
    }
 
-   const [ timer, setTimer ] = useState('00:00:00')
+   const [timer, setTimer] = useState('00:00:00')
 
    useEffect(() => {
       if (DEPOSIT_DATA) {
@@ -111,9 +114,15 @@ const DepositForm = () => {
                clearInterval(interval)
                setTimer('00:00:00')
             } else {
-               const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0')
-               const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0')
-               const seconds = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0')
+               const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+                  .toString()
+                  .padStart(2, '0')
+               const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+                  .toString()
+                  .padStart(2, '0')
+               const seconds = Math.floor((distance % (1000 * 60)) / 1000)
+                  .toString()
+                  .padStart(2, '0')
                setTimer(`${hours}:${minutes}:${seconds}`)
             }
          }, 1000)
@@ -129,32 +138,27 @@ const DepositForm = () => {
          <S.DepositFormItem>
             <S.DepositPriceWrapper>
                <S.DepositPriceCurrencyWrapper>
-                  <S.DepositPriceMainCurrency>
-                     FST
-                  </S.DepositPriceMainCurrency>
-                  <S.DepositPriceChosenCurrency>
-                     /{activeCurrency?.asset_code}
-                  </S.DepositPriceChosenCurrency>
+                  <S.DepositPriceMainCurrency>FST</S.DepositPriceMainCurrency>
+                  <S.DepositPriceChosenCurrency>/{activeCurrency?.asset_code}</S.DepositPriceChosenCurrency>
                </S.DepositPriceCurrencyWrapper>
 
                <S.DepositPriceRateWrapper>
-                  <LuminousLogo/>
-                  1
-                  ≈
+                  <LuminousLogo />
+                  1 ≈
                   <Image
                      width="50"
                      height="50"
                      src={activeCurrency?.asset_image}
                      alt={activeCurrency?.asset_name}
-                     style={{ filter: `brightness(${activeCurrency?.asset_name === 'USDT' && theme === 'light' ? 0 : 1})` }}
+                     style={{
+                        filter: `brightness(${activeCurrency?.asset_name === 'USDT' && theme === 'light' ? 0 : 1})`,
+                     }}
                   />
                   {EXCHANGE_RATE.exchange_rate}
                </S.DepositPriceRateWrapper>
             </S.DepositPriceWrapper>
 
-
             <form onSubmit={handleSubmit(onDepositSubmit)}>
-
                <S.DepositInput>
                   <S.DepositInputTitle>I want to deposit</S.DepositInputTitle>
                   <Controller
@@ -163,15 +167,21 @@ const DepositForm = () => {
                      render={({ field }) => (
                         <Input
                            label="Deposit Value"
-                           icon={() => <S.DepositInputIcon>
-                              <Image
-                                 width="50"
-                                 height="50"
-                                 src={activeCurrency?.chain_image}
-                                 alt={activeCurrency?.asset_name}
-                                 style={{ filter: `brightness(${activeCurrency?.chain_code === 'TRC20' && theme === 'light' ? 0 : 1})` }}
-                              />
-                           </S.DepositInputIcon>}
+                           icon={() => (
+                              <S.DepositInputIcon>
+                                 <Image
+                                    width="50"
+                                    height="50"
+                                    src={activeCurrency?.chain_image}
+                                    alt={activeCurrency?.asset_name}
+                                    style={{
+                                       filter: `brightness(${
+                                          activeCurrency?.chain_code === 'TRC20' && theme === 'light' ? 0 : 1
+                                       })`,
+                                    }}
+                                 />
+                              </S.DepositInputIcon>
+                           )}
                            placeholder={`${EXCHANGE_RATE.exchange_rate} >`}
                            {...field}
                            {...register(depositFormNames.amount)}
@@ -182,7 +192,8 @@ const DepositForm = () => {
                      )}
                   />
                   <S.DepositInputHint isError={!!errors.amount?.message}>
-                     {errors.amount?.message || `The minimum amount of the warehouse order is 
+                     {errors.amount?.message ||
+                        `The minimum amount of the warehouse order is 
                      ${EXCHANGE_RATE.exchange_rate} ${activeCurrency?.asset_code}`}
                   </S.DepositInputHint>
                </S.DepositInput>
@@ -194,9 +205,11 @@ const DepositForm = () => {
                      render={({ field }) => (
                         <Input
                            label="Get Value"
-                           icon={() => <S.DepositInputIcon>
-                              <Image width="20" height="20" src={inputLuminousLogo} alt={'FST'}/>
-                           </S.DepositInputIcon>}
+                           icon={() => (
+                              <S.DepositInputIcon>
+                                 <Image width="20" height="20" src={inputLuminousLogo} alt={'FST'} />
+                              </S.DepositInputIcon>
+                           )}
                            placeholder="0.1 >"
                            {...field}
                            {...register(depositFormNames.converted)}
@@ -206,76 +219,68 @@ const DepositForm = () => {
                         />
                      )}
                   />
-                  {errors.converted?.message &&
-                     <S.DepositInputHint isError>{errors.converted.message}</S.DepositInputHint>}
+                  {errors.converted?.message && (
+                     <S.DepositInputHint isError>{errors.converted.message}</S.DepositInputHint>
+                  )}
                </S.DepositInput>
 
-
-               {DEPOSIT_DATA?.asset?.id !== activeCurrencyId && <S.ButtonWrapper>
-                  <Button type="submit" variant="outlined">
-                     <OkIcon/>
-                     Confirm
-                  </Button>
-               </S.ButtonWrapper>}
-
+               {DEPOSIT_DATA?.asset?.id !== activeCurrencyId && (
+                  <S.ButtonWrapper>
+                     <Button type="submit" variant="outlined">
+                        <OkIcon />
+                        Confirm
+                     </Button>
+                  </S.ButtonWrapper>
+               )}
             </form>
-
          </S.DepositFormItem>
 
-         {DEPOSIT_DATA?.asset_id === activeCurrencyId && <S.DepositFormItem>
-            <S.DepositDataTitle>
-               Send
-               <S.DepositDataTitleHighlighted>
-                  &nbsp;{DEPOSIT_DATA?.amount} {DEPOSIT_DATA?.asset.asset_code}&nbsp;
-               </S.DepositDataTitleHighlighted>
-               using QR code or copy wallet address
-            </S.DepositDataTitle>
-            <S.DepositDataText>
-               You have created a money transfer order. Send the specified amount to the wallet below
-               <S.DepositDataTextHighlighted> before the payment time limit expires. </S.DepositDataTextHighlighted>
-               You can cancel the order to create a new one by clicking cancel
-            </S.DepositDataText>
+         {DEPOSIT_DATA?.asset_id === activeCurrencyId && (
+            <S.DepositFormItem>
+               <S.DepositDataTitle>
+                  Send
+                  <S.DepositDataTitleHighlighted>
+                     &nbsp;{DEPOSIT_DATA?.amount} {DEPOSIT_DATA?.asset.asset_code}&nbsp;
+                  </S.DepositDataTitleHighlighted>
+                  using QR code or copy wallet address
+               </S.DepositDataTitle>
+               <S.DepositDataText>
+                  You have created a money transfer order. Send the specified amount to the wallet below
+                  <S.DepositDataTextHighlighted> before the payment time limit expires. </S.DepositDataTextHighlighted>
+                  You can cancel the order to create a new one by clicking cancel
+               </S.DepositDataText>
 
-            <S.DepositDataWrapper>
-               <S.DepositDataQr>
-                  <Image
-                     width="150"
-                     height="150"
-                     src={DEPOSIT_DATA?.qr}
-                     alt="qr code"
-                  />
-               </S.DepositDataQr>
+               <S.DepositDataWrapper>
+                  <S.DepositDataQr>
+                     <Image width="150" height="150" src={DEPOSIT_DATA?.qr} alt="qr code" />
+                  </S.DepositDataQr>
 
-               <S.DepositDataTimeContainer>
-                  <S.DepositDataTimeTitle>
-                     Payment time limit
-                  </S.DepositDataTimeTitle>
-                  <S.DepositDataTimeWrapper>
-                     <S.DepositDataTime>{timer}</S.DepositDataTime>
-                     <Button variant="outlined" onClick={onCancelDeposit}>
-                        <DepositIcon/>
-                        Cancel
-                     </Button>
-                  </S.DepositDataTimeWrapper>
-                  <S.DepositDataHint>
-                     Send only {DEPOSIT_DATA?.asset.asset_name} to this address. Sending any other coins may results in
-                     permanent loss
-                  </S.DepositDataHint>
-               </S.DepositDataTimeContainer>
-            </S.DepositDataWrapper>
+                  <S.DepositDataTimeContainer>
+                     <S.DepositDataTimeTitle>Payment time limit</S.DepositDataTimeTitle>
+                     <S.DepositDataTimeWrapper>
+                        <S.DepositDataTime>{timer}</S.DepositDataTime>
+                        <Button variant="outlined" onClick={onCancelDeposit}>
+                           <DepositIcon />
+                           Cancel
+                        </Button>
+                     </S.DepositDataTimeWrapper>
+                     <S.DepositDataHint>
+                        Send only {DEPOSIT_DATA?.asset.asset_name} to this address. Sending any other coins may results
+                        in permanent loss
+                     </S.DepositDataHint>
+                  </S.DepositDataTimeContainer>
+               </S.DepositDataWrapper>
 
-            <S.DepositDataAddress>
-               <S.DepositDataAddressText>
-                  {DEPOSIT_DATA?.address}
-               </S.DepositDataAddressText>
-               <CopyToClipboard onCopy={handleCopied} text={'0xb794f5ea0ba39494ce839613fffba74279579268'}>
-                  <S.DepositDataCopyAddress>
-                     <CopyIcon/>
-                  </S.DepositDataCopyAddress>
-               </CopyToClipboard>
-            </S.DepositDataAddress>
-
-         </S.DepositFormItem>}
+               <S.DepositDataAddress>
+                  <S.DepositDataAddressText>{DEPOSIT_DATA?.address}</S.DepositDataAddressText>
+                  <CopyToClipboard onCopy={handleCopied} text={'0xb794f5ea0ba39494ce839613fffba74279579268'}>
+                     <S.DepositDataCopyAddress>
+                        <CopyIcon />
+                     </S.DepositDataCopyAddress>
+                  </CopyToClipboard>
+               </S.DepositDataAddress>
+            </S.DepositFormItem>
+         )}
       </S.DepositForm>
    )
 }

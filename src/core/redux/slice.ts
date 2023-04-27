@@ -4,15 +4,15 @@ import Cookies from 'js-cookie'
 import { EColorTheme } from '@/core/styles/theme'
 
 export interface IAppState {
-   theme: EColorTheme;
-   loading: boolean;
-   disabledLoading: boolean;
+   theme: EColorTheme
+   loading: boolean
+   disabledLoading: boolean
 }
 
 const initialState: IAppState = {
    theme: EColorTheme.dark,
    loading: false,
-   disabledLoading: false
+   disabledLoading: false,
 }
 
 export const slice = createSlice({

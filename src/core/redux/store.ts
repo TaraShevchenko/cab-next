@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Action, AnyAction, combineReducers, configureStore, Middleware, ThunkAction, } from '@reduxjs/toolkit'
+import { Action, AnyAction, combineReducers, configureStore, Middleware, ThunkAction } from '@reduxjs/toolkit'
 import { createWrapper, HYDRATE } from 'next-redux-wrapper'
 import { useDispatch } from 'react-redux'
 
@@ -29,18 +29,14 @@ const reducer: any = (state: ReturnType<typeof combinedReducer>, action: AnyActi
 export const makeStore: any = () =>
    configureStore({
       reducer,
-      middleware: (getDefaultMiddleware) =>
-         getDefaultMiddleware().concat(coreApi.middleware as Middleware),
+      middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(coreApi.middleware as Middleware),
    })
 
-type Store = ReturnType<typeof makeStore>;
+type Store = ReturnType<typeof makeStore>
 
-export type AppDispatch = Store['dispatch'];
-export type RootState = ReturnType<Store['getState']>;
-export type AppThunk<ReturnType = void> = ThunkAction<ReturnType,
-   RootState,
-   unknown,
-   Action<string>>;
+export type AppDispatch = Store['dispatch']
+export type RootState = ReturnType<Store['getState']>
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, Action<string>>
 
 export const wrapper = createWrapper(makeStore, { debug: true })
 

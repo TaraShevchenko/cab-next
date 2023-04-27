@@ -52,7 +52,6 @@ export const NotificationDropdown = styled.div<{ isOpen: boolean }>(
 
       width: 260px;
 
-
       ${down(breakpoints.md)} {
          top: 100%;
          right: 32px;

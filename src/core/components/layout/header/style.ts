@@ -127,7 +127,6 @@ export const ProfileName = styled.button(
          transition: all 0.2s ease-in-out;
       }
 
-
       ${up(breakpoints.xlg)} {
          &:hover {
             color: ${colorTheme.header.primaryColor};

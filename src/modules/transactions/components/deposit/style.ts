@@ -104,14 +104,12 @@ export const CurrencyIcon = styled.div(
       border-radius: 100%;
       border: ${colorTheme.name === EColorTheme.light ? `1px solid ${colors.catskillWhite}` : 'none'};
 
-
       background: ${colorTheme.deposit.currencyIconBackground};
 
       img {
          height: 100%;
          width: 100%;
       }
-
 
       ${down(breakpoints.xxxlg)} {
          height: 42px;
@@ -306,7 +304,7 @@ export const DepositFormItem = styled.div(
          width: 100%;
       }
 
-         // ${down(breakpoints.xlg)} {
+      // ${down(breakpoints.xlg)} {
       //    width: calc(50% - 30px);
       // }
 
@@ -323,7 +321,6 @@ export const DepositPriceWrapper = styled.div(
       border: ${colorTheme.name === EColorTheme.light ? `1px solid ${colors.catskillWhite}` : 'none'};
       border-radius: 20px;
       padding: 20px 35px;
-
 
       ${down(breakpoints.xxxlg)} {
          padding: 23px 20px;
@@ -431,7 +428,6 @@ export const DepositInputIcon = styled.span(
       width: 40px;
       height: 40px;
 
-
       background: ${colorTheme.colors.body};
       border-radius: 10px;
 
@@ -519,7 +515,6 @@ export const DepositDataTextHighlighted = styled.span(
    ({ theme: { colorTheme } }) => css`
       color: ${colorTheme.colors.primaryText};
       font-weight: ${colorTheme.name === EColorTheme.light ? '700' : '400'};
-
    `
 )
 export const DepositDataWrapper = styled.div(
@@ -559,7 +554,7 @@ export const DepositDataTimeContainer = styled.div(
       }
 
       ${down(breakpoints.xlg)} {
-         width: 100%
+         width: 100%;
       }
 
       ${down(breakpoints.lg)} {
@@ -567,7 +562,7 @@ export const DepositDataTimeContainer = styled.div(
       }
 
       ${down(breakpoints.md)} {
-         width: 100%
+         width: 100%;
       }
    `
 )
@@ -585,7 +580,6 @@ export const DepositDataQr = styled.div(
          height: calc(100% - 15px);
       }
 
-
       ${down(breakpoints.xxxlg)} {
          transform: unset;
          width: 130px;
@@ -599,7 +593,7 @@ export const DepositDataQr = styled.div(
       }
 
       ${down(breakpoints.lg)} {
-         margin: 0
+         margin: 0;
       }
 
       ${down(breakpoints.md)} {
@@ -721,4 +715,3 @@ export const DepositDataCopyAddress = styled.button(
       }
    `
 )
-

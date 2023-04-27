@@ -64,5 +64,5 @@ export const API_ROUTES = {
    USER: (id: string) => `/users/${id}`,
    USER_BALANCE: (id: string) => `/users/${id}/balance`,
    USER_PASSWORD: (id: string) => `/users/${id}/password`,
-   USERS: '/users'
+   USERS: '/users',
 }

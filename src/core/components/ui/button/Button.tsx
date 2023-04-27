@@ -7,9 +7,15 @@ import { ButtonProps } from './types'
 
 const Button: FC<ButtonProps> = ({ disabled = false, children, href, ...props }) => (
    <>
-      {href
-         ? <NavLink to={href}><S.Span {...props}>{children}</S.Span></NavLink>
-         : <S.Button disabled={disabled} {...props}>{children}</S.Button>}
+      {href ? (
+         <NavLink to={href}>
+            <S.Span {...props}>{children}</S.Span>
+         </NavLink>
+      ) : (
+         <S.Button disabled={disabled} {...props}>
+            {children}
+         </S.Button>
+      )}
    </>
 )
 

@@ -3,8 +3,7 @@ import { signInCopyright } from '@/modules/auth/components/sign-page-template/co
 import SignPageTemplate from '@/modules/auth/components/sign-page-template/SignPageTemplate'
 
 const SignInPage = () => {
-   return <SignPageTemplate config={signInCopyright} Form={SignInForm}/>
+   return <SignPageTemplate config={signInCopyright} Form={SignInForm} />
 }
-
 
 export default SignInPage

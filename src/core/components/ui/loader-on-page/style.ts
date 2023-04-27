@@ -63,7 +63,7 @@ export const LoaderWrapper = styled.div(
             transform: rotate(360deg);
          }
       }
-      
+
       @keyframes dash {
          0% {
             stroke-dasharray: 1, 200;
@@ -78,7 +78,7 @@ export const LoaderWrapper = styled.div(
             stroke-dashoffset: -124;
          }
       }
-      
+
       @keyframes color {
          0% {
             stroke: ${colorTheme.loader.iconColor};
@@ -89,7 +89,8 @@ export const LoaderWrapper = styled.div(
          66% {
             stroke: ${colorTheme.loader.iconColor};
          }
-         80%, 90% {
+         80%,
+         90% {
             stroke: ${colorTheme.loader.iconColor};
          }
       }

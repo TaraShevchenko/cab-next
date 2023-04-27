@@ -41,7 +41,7 @@ export const Switch = styled.div(
 
          transition: 300ms all;
       }
-   `,
+   `
 )
 
 export const Input = styled.input(
@@ -63,5 +63,5 @@ export const Input = styled.input(
             }
          }
       }
-   `,
+   `
 )

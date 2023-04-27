@@ -12,10 +12,7 @@ import welcomeLogo from './assets/welcome-logo.png'
 import { Container, Left, Right, SignAnhor, ToggleWrapper } from './styles'
 import { SignPageTemplateProps } from './types'
 
-const SignPageTemplate: FC<SignPageTemplateProps> = ({
-   config,
-   Form,
-}) => (
+const SignPageTemplate: FC<SignPageTemplateProps> = ({ config, Form }) => (
    <Container>
       <Left>
          <Image
@@ -26,19 +23,13 @@ const SignPageTemplate: FC<SignPageTemplateProps> = ({
             className="background-image"
             loading="eager"
          />
-         <Image
-            width={240}
-            height={325}
-            src={welcomeLogo}
-            alt="Welcome Logo"
-            className="welcome-logo"
-         />
+         <Image width={240} height={325} src={welcomeLogo} alt="Welcome Logo" className="welcome-logo" />
       </Left>
 
       <Right>
-         <BackgroundCircles/>
+         <BackgroundCircles />
          <Center>
-            <Form/>
+            <Form />
          </Center>
          <SignAnhor>
             {config.text}{' '}
@@ -47,7 +38,7 @@ const SignPageTemplate: FC<SignPageTemplateProps> = ({
             </NavLink>
          </SignAnhor>
          <ToggleWrapper>
-            <ToggleTheme/>
+            <ToggleTheme />
          </ToggleWrapper>
       </Right>
    </Container>

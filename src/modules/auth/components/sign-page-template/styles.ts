@@ -11,7 +11,7 @@ export const Container = styled.div(
          height: 100%;
          flex-direction: column;
       }
-   `,
+   `
 )
 
 export const Left = styled.div(
@@ -65,7 +65,7 @@ export const Left = styled.div(
       ${down(breakpoints.xsm)} {
          padding: 15px 0;
       }
-   `,
+   `
 )
 
 export const Right = styled.div(
@@ -81,7 +81,7 @@ export const Right = styled.div(
          height: 100%;
          flex: 1 0 52%;
       }
-   `,
+   `
 )
 
 export const SignAnhor = styled.div(
@@ -113,7 +113,7 @@ export const SignAnhor = styled.div(
       ${down(breakpoints.xsm)} {
          bottom: 20px;
       }
-   `,
+   `
 )
 
 export const ToggleWrapper = styled.div(
@@ -131,7 +131,7 @@ export const ToggleWrapper = styled.div(
       ${down(breakpoints.xsm)} {
          bottom: 20px;
       }
-   `,
+   `
 )
 
 export const FormWrapper = styled.div(
@@ -151,7 +151,7 @@ export const FormWrapper = styled.div(
       ${down(breakpoints.xsm)} {
          padding: 30px 16px 90px;
       }
-   `,
+   `
 )
 
 export const Title = styled.h3(
@@ -171,7 +171,7 @@ export const Title = styled.h3(
          font-size: 25px;
          line-height: 28px;
       }
-   `,
+   `
 )
 
 export const Description = styled.div(
@@ -193,7 +193,7 @@ export const Description = styled.div(
          font-size: 15px;
          line-height: 20px;
       }
-   `,
+   `
 )
 
 export const Form = styled.form(
@@ -206,7 +206,7 @@ export const Form = styled.form(
       ${down(breakpoints.sm)} {
          gap: 15px;
       }
-   `,
+   `
 )
 
 export const Terms = styled.p(
@@ -218,13 +218,13 @@ export const Terms = styled.p(
       color: ${colorTheme.colors.secondaryText};
 
       margin-left: 10px;
-   `,
+   `
 )
 
 export const CaptchaWrapper = styled.div(
    () => css`
       margin-bottom: -30px;
-   `,
+   `
 )
 
 export const ButtonWrapper = styled.div(
@@ -238,5 +238,5 @@ export const ButtonWrapper = styled.div(
             width: 100%;
          }
       }
-   `,
+   `
 )

@@ -33,7 +33,7 @@ const Header = () => {
 
    const pageInfo = routes.find(({ path }) => path === pathname)
 
-   const [ isOpenDropdown, setIsOpenDropdown ] = useState(false)
+   const [isOpenDropdown, setIsOpenDropdown] = useState(false)
    const handleToggleDropdown = () => {
       setIsOpenDropdown(!isOpenDropdown)
    }
@@ -44,7 +44,7 @@ const Header = () => {
    const dropdownRef = useRef(null)
    useClickOutside(dropdownRef, handleCloseDropdown)
 
-   const [ isOpenMobileMenu, setIsOpenMobileMenu ] = useState(false)
+   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false)
    const handleToggleMobileMenu = () => {
       setIsOpenMobileMenu(!isOpenMobileMenu)
    }
@@ -52,7 +52,7 @@ const Header = () => {
       setIsOpenMobileMenu(false)
    }
 
-   const [ handleLogout ] = useLogoutMutation()
+   const [handleLogout] = useLogoutMutation()
 
    const handleLogOut = async () => {
       try {
@@ -73,7 +73,7 @@ const Header = () => {
          notificationContainer('Logout failed !', 'error')
       }
 
-      // Todo - remove this after deploy backend
+      // TODO: - remove this after deploy backend
       handleLoadingBefore(() => {
          push(ERoutesPaths.SIGN_IN)
          Cookies.set('token', '')
@@ -86,48 +86,41 @@ const Header = () => {
          <S.Title>{pageInfo?.title}</S.Title>
 
          <S.ToggleThemeWrapper>
-            <ToggleTheme/>
+            <ToggleTheme />
          </S.ToggleThemeWrapper>
 
-         <NotificationDropdown/>
+         <NotificationDropdown />
 
          <S.BurgerWrapper onClick={handleToggleMobileMenu}>
-            <Burger/>
+            <Burger />
          </S.BurgerWrapper>
 
          <S.ProfileWrapper isActive={isOpenDropdown} ref={dropdownRef}>
             <S.ProfilePhotoWrapper>
-               {
-                  userData?.user_image
-                     ? <S.ProfilePhoto
-                        height={50} width={50}
-                        src={userData.user_image}
-                        alt={userData.first_name}
-                     />
-                     : <AvatarBlank/>
-               }
+               {userData?.user_image ? (
+                  <S.ProfilePhoto height={50} width={50} src={userData.user_image} alt={userData.first_name} />
+               ) : (
+                  <AvatarBlank />
+               )}
             </S.ProfilePhotoWrapper>
             <S.ProfileName onClick={handleToggleDropdown}>
-               <S.ProfileNameText>{`${userData?.first_name} ${userData?.last_name}` || `id${userData?.id}` || ''}</S.ProfileNameText>
-               <Arrow/>
+               <S.ProfileNameText>
+                  {`${userData?.first_name} ${userData?.last_name}` || `id${userData?.id}` || ''}
+               </S.ProfileNameText>
+               <Arrow />
             </S.ProfileName>
             <S.ProfileDropdown>
-               <S.ProfileDropdownTriangleBorder/>
-               <S.ProfileItem>
-                  Account settings
-               </S.ProfileItem>
-               <S.ProfileItem onClick={handleLogOut}>
-                  Log Out
-               </S.ProfileItem>
+               <S.ProfileDropdownTriangleBorder />
+               <S.ProfileItem>Account settings</S.ProfileItem>
+               <S.ProfileItem onClick={handleLogOut}>Log Out</S.ProfileItem>
             </S.ProfileDropdown>
          </S.ProfileWrapper>
 
          <S.MobileMenuWrapper isActive={isOpenMobileMenu}>
             <S.MobileMenuHeader>
-
                <S.MobileMenuProfileWrapper>
                   <S.ProfilePhotoWrapper>
-                     <AvatarBlank/>
+                     <AvatarBlank />
                   </S.ProfilePhotoWrapper>
                   <S.ProfileName onClick={handleToggleDropdown}>
                      {`${userData?.first_name} ${userData?.last_name}` || `id${userData?.id || ''}` || ''}
@@ -135,25 +128,23 @@ const Header = () => {
                </S.MobileMenuProfileWrapper>
 
                <S.BurgerWrapper onClick={handleCloseMobileMenu}>
-                  <Close/>
+                  <Close />
                </S.BurgerWrapper>
-
             </S.MobileMenuHeader>
 
             <S.MobileMenuNavbarWrapper>
-               <NavbarList handleItemClick={handleCloseMobileMenu}/>
+               <NavbarList handleItemClick={handleCloseMobileMenu} />
             </S.MobileMenuNavbarWrapper>
 
             <S.MobileMenuFooter>
                <S.MobileMenuLogOutButton onClick={handleLogOut}>
-                  <Logout/>
+                  <Logout />
                   Log Out
                </S.MobileMenuLogOutButton>
-               <ToggleTheme/>
+               <ToggleTheme />
             </S.MobileMenuFooter>
-
          </S.MobileMenuWrapper>
-         <Backdrop isActive={isOpenMobileMenu} onClick={handleCloseMobileMenu}/>
+         <Backdrop isActive={isOpenMobileMenu} onClick={handleCloseMobileMenu} />
       </S.HeaderWrapper>
    )
 }

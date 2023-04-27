@@ -8,24 +8,24 @@ import Eye from '@/core/assets/icons/eye.svg'
 
 import { Container, Switch } from './styles'
 
-const InputPassword = ({ type, ...props }: IInputProps, ref: Ref<{ focus: () => void }>) => {
+const InputPassword = (props: IInputProps, ref: Ref<{ focus: () => void }>) => {
    const inputRef = useRef<HTMLInputElement>(null)
-   const [ isVisible, setIsVisible ] = useState(false)
+   const [isVisible, setIsVisible] = useState(false)
 
    useImperativeHandle(ref, () => ({
       focus: () => {
          inputRef?.current?.focus()
-      }
+      },
    }))
 
    const handleIsVisible = () => setIsVisible((prevIsVisible) => !prevIsVisible)
 
    return (
       <Container>
-         <Input type={isVisible ? 'text' : 'password'} {...props} ref={inputRef}/>
+         <Input {...props} type={isVisible ? 'text' : 'password'} ref={inputRef} />
          <Switch onClick={handleIsVisible}>
-            {isVisible && <EyeOff/>}
-            {!isVisible && <Eye/>}
+            {isVisible && <EyeOff />}
+            {!isVisible && <Eye />}
          </Switch>
       </Container>
    )

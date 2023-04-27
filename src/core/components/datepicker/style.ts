@@ -40,7 +40,7 @@ export const DatePikerInputArrow = styled.div(
       position: absolute;
       color: ${colorTheme.colors.primaryText};
       transform: translateY(-50%) rotate(180deg);
-      transition: all .2s ease-in-out;
+      transition: all 0.2s ease-in-out;
 
       ${down(breakpoints.sm)} {
          right: 10px;
@@ -49,10 +49,10 @@ export const DatePikerInputArrow = styled.div(
 )
 
 export const DatePikerClearButton = styled.div<{ isActive: boolean }>(
-   ({ theme, isActive }) => css`
+   ({ isActive }) => css`
       opacity: ${isActive ? 1 : 0};
       pointer-events: ${isActive ? 'unset' : 'none'};
-      transition: all .2s ease-in-out;
+      transition: all 0.2s ease-in-out;
 
       button {
          height: 60px;
@@ -160,7 +160,8 @@ export const DatePikerDropdown = styled.div<{ isActive: boolean }>(
       }
 
       .react-datepicker__navigation-icon {
-         background: ${`url(${colorTheme.name === 'light' ? DatePikerArrowToLightTheme : DatePikerArrowToDarkTheme})`} no-repeat;
+         background: ${`url(${colorTheme.name === 'light' ? DatePikerArrowToLightTheme : DatePikerArrowToDarkTheme})`}
+            no-repeat;
          width: 15px;
          height: 15px;
          top: 10px;
@@ -187,17 +188,18 @@ export const DatePikerDropdown = styled.div<{ isActive: boolean }>(
          align-items: center;
          justify-content: center;
          border-radius: 0;
-         transition: all .2s ease-in-out;
+         transition: all 0.2s ease-in-out;
          color: ${colorTheme.colors.primaryText};
 
          &:hover {
-            color: #19242D;
+            color: #19242d;
             border-radius: 0;
             background: ${colors.accent};
-            transition: all .2s ease-in-out;
+            transition: all 0.2s ease-in-out;
          }
 
-         &.react-datepicker__day--keyboard-selected, &.react-datepicker__day--selected {
+         &.react-datepicker__day--keyboard-selected,
+         &.react-datepicker__day--selected {
             color: ${colorTheme.colors.primaryText};
             background: ${colorTheme.datePicker.background};
          }

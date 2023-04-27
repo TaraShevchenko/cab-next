@@ -7,7 +7,7 @@ import TransactionsHistoryTable from '../../components/transactions-history-tabl
 const TransactionsPage = () => {
    return (
       <Layout>
-         <TransactionsHistoryTable/>
+         <TransactionsHistoryTable />
       </Layout>
    )
 }

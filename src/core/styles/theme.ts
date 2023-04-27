@@ -121,7 +121,7 @@ export const lightTheme = {
       },
    },
    chart: {
-      value: colors.turquoise
+      value: colors.turquoise,
    },
    navbar: {
       background: colors.linkWater,
@@ -186,7 +186,7 @@ export const lightTheme = {
       activeColor: colors.shuttleGray,
       outsideMonthColor: colors.ghost,
       boxShadow: colors.blackHoleTransparent,
-   }
+   },
 }
 
 export const darkTheme = {
@@ -245,7 +245,7 @@ export const darkTheme = {
       },
    },
    chart: {
-      value: colors.accent
+      value: colors.accent,
    },
    navbar: {
       background: colors.firefly,
@@ -301,15 +301,15 @@ export const darkTheme = {
       currencyIconBackground: colors.firefly,
    },
    transactions: {
-      transactionBackground:  colors.theCountsBlack,
-      transactionColName:  colors.blueBayoux,
+      transactionBackground: colors.theCountsBlack,
+      transactionColName: colors.blueBayoux,
    },
    datePicker: {
       background: colors.theCountsBlack,
       activeColor: colors.dark,
       outsideMonthColor: colors.blueBayoux,
       boxShadow: colors.blackTransparent,
-   }
+   },
 }
 
 const themes = {

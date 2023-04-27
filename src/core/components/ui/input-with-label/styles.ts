@@ -24,7 +24,8 @@ export const Wrapper = styled.div<{ isOnTop: boolean }>(
          transition: opacity 0.2s ease-in-out;
          pointer-events: none;
       }
-   `)
+   `
+)
 
 const filledLabel = css`
    font-weight: 600;
@@ -51,7 +52,7 @@ export const Label = styled.div(
       pointer-events: none;
 
       transition: all 0.2s ease-in-out;
-   `,
+   `
 )
 
 export const Error = styled.span(
@@ -73,5 +74,5 @@ export const Error = styled.span(
       transform: translate(0%, 40%);
       z-index: 3;
       background-color: ${({ theme }) => theme.colorTheme.colors.body};
-   `,
+   `
 )

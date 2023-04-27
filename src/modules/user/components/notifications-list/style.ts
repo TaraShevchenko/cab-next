@@ -4,14 +4,13 @@ import { flex } from '@/core/styles/utils'
 
 export const NotificationsFilters = styled.div(
    ({ theme: { down, breakpoints } }) => css`
-    
       margin-bottom: 40px;
-      
+
       ${down(breakpoints.md)} {
          margin-bottom: 30px;
       }
-  `
-);
+   `
+)
 
 export const NotificationsListWrapper = styled.div(
    ({ theme: { down, breakpoints } }) => css`
@@ -19,7 +18,7 @@ export const NotificationsListWrapper = styled.div(
       flex-direction: column;
       gap: 20px;
       margin-bottom: 45px;
-      
+
       &:last-child {
          margin-bottom: 0;
       }
@@ -28,12 +27,11 @@ export const NotificationsListWrapper = styled.div(
          gap: 10px;
          margin-bottom: 30px;
       }
-  `
-);
+   `
+)
 
 export const NotificationsListTitle = styled.p(
    ({ theme: { colorTheme, fonts, down, breakpoints } }) => css`
-    
       font-family: ${fonts.primary};
       font-weight: 500;
       font-size: 23px;
@@ -48,19 +46,19 @@ export const NotificationsListTitle = styled.p(
       ${down(breakpoints.md)} {
          margin-bottom: 5px;
       }
-      
+
       ${down(breakpoints.sm)} {
          font-size: 17px;
       }
    `
-);
+)
 
 export const NotificationsListItem = styled.div(
    ({ theme: { colorTheme, down, breakpoints } }) => css`
       display: flex;
       border-radius: 20px;
       padding: 19px 37px;
-      
+
       background: ${colorTheme.colors.secondaryBackground};
       box-shadow: 0 46px 70px -30px ${colorTheme.colors.shadow};
 
@@ -72,8 +70,8 @@ export const NotificationsListItem = styled.div(
       ${down(breakpoints.sm)} {
          padding: 30px 16px;
       }
-  `
-);
+   `
+)
 
 export const IconWrapper = styled.div(
    ({ theme: { colorTheme, down, breakpoints } }) => css`
@@ -96,43 +94,42 @@ export const IconWrapper = styled.div(
          padding-right: 0;
          margin-bottom: 20px;
          padding-bottom: 25px;
-         
+
          svg {
             transform: scale(1.15);
          }
       }
-  `
-);
+   `
+)
 
 export const Date = styled.p(
    ({ theme: { colorTheme, fonts, down, breakpoints } }) => css`
       font-family: ${fonts.primary};
       font-weight: 500;
       font-size: 15px;
-      
-      color: ${colorTheme.notification.notificationIcon};
-      
-      margin-bottom: 8px;
 
+      color: ${colorTheme.notification.notificationIcon};
+
+      margin-bottom: 8px;
 
       ${down(breakpoints.lg)} {
          font-size: 13px;
          margin-bottom: 5px;
       }
-  `
-);
+   `
+)
 
 export const Title = styled.h4(
    ({ theme: { colorTheme, fonts, down, breakpoints } }) => css`
       font-family: ${fonts.primary};
       color: ${colorTheme.colors.primaryText};
-      
+
       font-weight: 500;
       font-size: 19px;
       line-height: 24px;
-      
+
       margin-bottom: 5px;
-      
+
       ${down(breakpoints.lg)} {
          font-size: 17px;
          line-height: 22px;
@@ -141,8 +138,8 @@ export const Title = styled.h4(
          font-size: 15px;
          line-height: 19px;
       }
-  `
-);
+   `
+)
 
 export const Subtitle = styled.p(
    ({ theme: { colorTheme, fonts, down, breakpoints } }) => css`
@@ -156,8 +153,8 @@ export const Subtitle = styled.p(
       ${down(breakpoints.lg)} {
          font-size: 13px;
       }
-  `
-);
+   `
+)
 
 export const Link = styled.span(
    ({ theme: { colorTheme, down, breakpoints } }) => css`
@@ -167,17 +164,17 @@ export const Link = styled.span(
       ${down(breakpoints.lg)} {
          padding: 0 3px;
       }
-  `
-);
+   `
+)
 
 export const Highlighted = styled.span(
    ({ theme: { colorTheme, down, breakpoints } }) => css`
       color: ${colorTheme.colors.primaryText};
       font-weight: 700;
       padding: 0 4px;
-      
+
       ${down(breakpoints.lg)} {
          padding: 0 3px;
       }
-  `
-);
+   `
+)

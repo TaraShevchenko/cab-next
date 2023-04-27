@@ -83,10 +83,9 @@ export const StyledInput = styled.input<IInputProps>(
          color: ${colorTheme.inputs.primary.placeholder};
       }
 
-
       ${variants[variant]};
       ${!!isError && error};
 
       padding-left: ${!!icon && '50px'};
-   `,
+   `
 )

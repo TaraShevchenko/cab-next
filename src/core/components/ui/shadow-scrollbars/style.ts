@@ -6,10 +6,12 @@ export const TopScrollShadow = styled.div(
       height: 50px;
       width: 100%;
       top: 89px;
-      background: linear-gradient(180deg,
-      ${colorTheme.shadowScroll.shadowStart} 33.26%,
-      ${colorTheme.shadowScroll.shadowMiddle} 65.86%,
-      ${colorTheme.shadowScroll.shadowFinish} 100%);
+      background: linear-gradient(
+         180deg,
+         ${colorTheme.shadowScroll.shadowStart} 33.26%,
+         ${colorTheme.shadowScroll.shadowMiddle} 65.86%,
+         ${colorTheme.shadowScroll.shadowFinish} 100%
+      );
       z-index: 79;
 
       ${down(breakpoints.xlg)} {
@@ -24,10 +26,12 @@ export const BottomScrollShadow = styled.div(
       height: 50px;
       width: 100%;
       bottom: 0;
-      background: linear-gradient(0,
-      ${colorTheme.shadowScroll.shadowStart} 33.26%,
-      ${colorTheme.shadowScroll.shadowMiddle} 65.86%,
-      ${colorTheme.shadowScroll.shadowFinish} 100%);
+      background: linear-gradient(
+         0,
+         ${colorTheme.shadowScroll.shadowStart} 33.26%,
+         ${colorTheme.shadowScroll.shadowMiddle} 65.86%,
+         ${colorTheme.shadowScroll.shadowFinish} 100%
+      );
       z-index: 79;
    `
 )

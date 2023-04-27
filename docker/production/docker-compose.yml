@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  fancee-production:
+    container_name: fancee-production-container
+    build:
+      context: ../../
+      dockerfile: docker/production/Dockerfile
+    image: fancee-production
+    ports:
+      - '3000:3000'

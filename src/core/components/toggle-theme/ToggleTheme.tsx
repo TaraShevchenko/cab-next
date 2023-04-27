@@ -18,27 +18,21 @@ const ToggleTheme = () => {
    const handleLoadingBefore = useLoading()
    const { colorTheme } = useTheme() as any
 
-   const [ checked, setChecked ] = useState(colorTheme.name === EColorTheme.light)
+   const [checked, setChecked] = useState(colorTheme.name === EColorTheme.light)
 
    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
       setChecked(e.target.checked)
       handleLoadingBefore(() => {
-            dispatch(setTheme(
-                  colorTheme.name === EColorTheme.light
-                     ? EColorTheme.dark
-                     : EColorTheme.light,
-               ),
-            )
-         }
-      )
+         dispatch(setTheme(colorTheme.name === EColorTheme.light ? EColorTheme.dark : EColorTheme.light))
+      })
    }
 
    return (
       <Label htmlFor="theme">
-         <Input id="theme" checked={checked} type="checkbox" onChange={handleChange}/>
+         <Input id="theme" checked={checked} type="checkbox" onChange={handleChange} />
          <Switch>
-            <Night/>
-            <Day/>
+            <Night />
+            <Day />
          </Switch>
       </Label>
    )

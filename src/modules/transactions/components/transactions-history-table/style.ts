@@ -76,11 +76,13 @@ export const ColValue = styled.p<{ color?: 'yellow' | 'green' | 'red' }>(
       font-weight: 500;
       font-size: 19px;
       line-height: 24px;
-      color: ${
-         color === 'yellow' ? `${colors.capitalYellow}` :
-            color === 'green' ? `${colors.accent}` :
-               color === 'red' ? `${colors.lickAndKiss}` :
-                  `${colorTheme.colors.primaryText}`};
+      color: ${color === 'yellow'
+         ? `${colors.capitalYellow}`
+         : color === 'green'
+         ? `${colors.accent}`
+         : color === 'red'
+         ? `${colors.lickAndKiss}`
+         : `${colorTheme.colors.primaryText}`};
       margin-bottom: 5px;
 
       ${down(breakpoints.sm)} {

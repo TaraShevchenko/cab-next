@@ -45,7 +45,15 @@ export const Card = styled.div<{ withLogo?: boolean; isChart?: boolean }>(
       background-position: 0 50%;
       background-repeat: no-repeat;
       background-image: url(${withLogo ? cardWithLogo : card}),
-      linear-gradient(180deg, ${colorTheme.dashboard.cardGradientColor1} 0%, ${colorTheme.dashboard.cardGradientColor2} 14.91%, ${colorTheme.dashboard.cardGradientColor3} 33.99%, ${colorTheme.dashboard.cardGradientColor3} 71.61%, ${colorTheme.dashboard.cardGradientColor2} 87.15%, ${colorTheme.dashboard.cardGradientColor1} 100%);
+         linear-gradient(
+            180deg,
+            ${colorTheme.dashboard.cardGradientColor1} 0%,
+            ${colorTheme.dashboard.cardGradientColor2} 14.91%,
+            ${colorTheme.dashboard.cardGradientColor3} 33.99%,
+            ${colorTheme.dashboard.cardGradientColor3} 71.61%,
+            ${colorTheme.dashboard.cardGradientColor2} 87.15%,
+            ${colorTheme.dashboard.cardGradientColor1} 100%
+         );
 
       padding: 40px 75px ${isChart ? '19px' : '49px'};
 
@@ -57,24 +65,56 @@ export const Card = styled.div<{ withLogo?: boolean; isChart?: boolean }>(
 
       ${down(breakpoints.xxxlg)} {
          background-image: url(${withLogo ? mobileCardWithLogo : mobileCard}),
-         linear-gradient(180deg, ${colorTheme.dashboard.cardGradientColor1} 0%, ${colorTheme.dashboard.cardGradientColor2} 14.91%, ${colorTheme.dashboard.cardGradientColor3} 33.99%, ${colorTheme.dashboard.cardGradientColor3} 71.61%, ${colorTheme.dashboard.cardGradientColor2} 87.15%, ${colorTheme.dashboard.cardGradientColor1} 100%);
+            linear-gradient(
+               180deg,
+               ${colorTheme.dashboard.cardGradientColor1} 0%,
+               ${colorTheme.dashboard.cardGradientColor2} 14.91%,
+               ${colorTheme.dashboard.cardGradientColor3} 33.99%,
+               ${colorTheme.dashboard.cardGradientColor3} 71.61%,
+               ${colorTheme.dashboard.cardGradientColor2} 87.15%,
+               ${colorTheme.dashboard.cardGradientColor1} 100%
+            );
          padding: 40px 50px ${isChart ? '20px' : '34px'};
       }
 
       ${down(breakpoints.xlg)} {
          background-image: url(${withLogo ? cardWithLogo : card}),
-         linear-gradient(180deg, ${colorTheme.dashboard.cardGradientColor1} 0%, ${colorTheme.dashboard.cardGradientColor2} 14.91%, ${colorTheme.dashboard.cardGradientColor3} 33.99%, ${colorTheme.dashboard.cardGradientColor3} 71.61%, ${colorTheme.dashboard.cardGradientColor2} 87.15%, ${colorTheme.dashboard.cardGradientColor1} 100%);
+            linear-gradient(
+               180deg,
+               ${colorTheme.dashboard.cardGradientColor1} 0%,
+               ${colorTheme.dashboard.cardGradientColor2} 14.91%,
+               ${colorTheme.dashboard.cardGradientColor3} 33.99%,
+               ${colorTheme.dashboard.cardGradientColor3} 71.61%,
+               ${colorTheme.dashboard.cardGradientColor2} 87.15%,
+               ${colorTheme.dashboard.cardGradientColor1} 100%
+            );
       }
 
       ${down(breakpoints.lg)} {
          background-image: url(${withLogo ? mobileCardWithLogo : mobileCard}),
-         linear-gradient(180deg, ${colorTheme.dashboard.cardGradientColor1} 0%, ${colorTheme.dashboard.cardGradientColor2} 14.91%, ${colorTheme.dashboard.cardGradientColor3} 33.99%, ${colorTheme.dashboard.cardGradientColor3} 71.61%, ${colorTheme.dashboard.cardGradientColor2} 87.15%, ${colorTheme.dashboard.cardGradientColor1} 100%);
+            linear-gradient(
+               180deg,
+               ${colorTheme.dashboard.cardGradientColor1} 0%,
+               ${colorTheme.dashboard.cardGradientColor2} 14.91%,
+               ${colorTheme.dashboard.cardGradientColor3} 33.99%,
+               ${colorTheme.dashboard.cardGradientColor3} 71.61%,
+               ${colorTheme.dashboard.cardGradientColor2} 87.15%,
+               ${colorTheme.dashboard.cardGradientColor1} 100%
+            );
          padding: 40px 30px 34px;
       }
 
       ${down(breakpoints.sm)} {
          background-image: url(${withLogo ? mobileCardWithLogo : mobileCard}),
-         linear-gradient(180deg, ${colorTheme.dashboard.cardGradientColor1} 0%, ${colorTheme.dashboard.cardGradientColor2} 14.91%, ${colorTheme.dashboard.cardGradientColor3} 33.99%, ${colorTheme.dashboard.cardGradientColor3} 71.61%, ${colorTheme.dashboard.cardGradientColor2} 87.15%, ${colorTheme.dashboard.cardGradientColor1} 100%);
+            linear-gradient(
+               180deg,
+               ${colorTheme.dashboard.cardGradientColor1} 0%,
+               ${colorTheme.dashboard.cardGradientColor2} 14.91%,
+               ${colorTheme.dashboard.cardGradientColor3} 33.99%,
+               ${colorTheme.dashboard.cardGradientColor3} 71.61%,
+               ${colorTheme.dashboard.cardGradientColor2} 87.15%,
+               ${colorTheme.dashboard.cardGradientColor1} 100%
+            );
          padding: 30px 16px 16px;
       }
    `
@@ -134,7 +174,9 @@ export const ButtonGroup = styled.div(
          flex-direction: column;
          gap: 10px;
 
-         button, a, a > span {
+         button,
+         a,
+         a > span {
             width: 100%;
             justify-content: center;
          }
@@ -187,7 +229,7 @@ export const Balance = styled.p(
       font-family: ${fonts.primary};
       font-weight: 500;
       font-size: 95px;
-      line-height: .8;
+      line-height: 0.8;
       color: ${colorTheme.colors.primaryText};
 
       ${down(breakpoints.xxxlg)} {
@@ -311,7 +353,7 @@ export const ReferralCopyLink = styled.button(
       }
 
       &:hover {
-         color: #10EAB5;
+         color: #10eab5;
          transition: all 0.2s ease-in-out;
       }
 

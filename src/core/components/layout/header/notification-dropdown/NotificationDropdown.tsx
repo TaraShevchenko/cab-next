@@ -9,7 +9,7 @@ import Notifications from '@/core/assets/icons/notifications.svg'
 import * as S from './style'
 
 const NotificationDropdown = () => {
-   const [ isOpenDropdown, setIsOpenDropdown ] = useState(false)
+   const [isOpenDropdown, setIsOpenDropdown] = useState(false)
    const handleToggleDropdown = () => {
       setIsOpenDropdown(!isOpenDropdown)
    }
@@ -22,15 +22,13 @@ const NotificationDropdown = () => {
    return (
       <S.NotificationsWrapper ref={dropdownRef}>
          <S.NotificationsButton onClick={handleToggleDropdown}>
-            <Notifications/>
+            <Notifications />
          </S.NotificationsButton>
 
          <S.NotificationDropdown isOpen={isOpenDropdown}>
-            <S.NotificationDropdownTriangleBorder/>
+            <S.NotificationDropdownTriangleBorder />
             <S.NotificationItem>
-               <S.NotificationItemDate>
-                  Today, 10:25
-               </S.NotificationItemDate>
+               <S.NotificationItemDate>Today, 10:25</S.NotificationItemDate>
                <S.NotificationItemText>
                   Bought
                   <S.NotificationItemHighlightedText>1 FST</S.NotificationItemHighlightedText>
@@ -39,9 +37,7 @@ const NotificationDropdown = () => {
                </S.NotificationItemText>
             </S.NotificationItem>
             <S.NotificationItem>
-               <S.NotificationItemDate>
-                  Today, 10:25
-               </S.NotificationItemDate>
+               <S.NotificationItemDate>Today, 10:25</S.NotificationItemDate>
                <S.NotificationItemText>
                   Bought
                   <S.NotificationItemHighlightedText>2 FST</S.NotificationItemHighlightedText>
@@ -50,22 +46,17 @@ const NotificationDropdown = () => {
                </S.NotificationItemText>
             </S.NotificationItem>
             <S.NotificationItem>
-               <S.NotificationItemDate>
-                  Today, 10:25
-               </S.NotificationItemDate>
+               <S.NotificationItemDate>Today, 10:25</S.NotificationItemDate>
                <S.NotificationItemText>
                   You have new referral
                   <S.NotificationItemHighlightedText>Jakob Weiss</S.NotificationItemHighlightedText>
                </S.NotificationItemText>
             </S.NotificationItem>
             <NavLink to="/notifications">
-               <S.NotificationViewAll>
-                  View All
-               </S.NotificationViewAll>
+               <S.NotificationViewAll>View All</S.NotificationViewAll>
             </NavLink>
          </S.NotificationDropdown>
       </S.NotificationsWrapper>
-
    )
 }
 

@@ -11,7 +11,7 @@ import NavbarList from './navbar-list/NavbarList'
 import * as S from './style'
 
 const Navbar = () => {
-   const [ navbarFull, setNavbarFull ] = useState(false)
+   const [navbarFull, setNavbarFull] = useState(false)
    const handleToggleNavbarSize = () => {
       setNavbarFull(!navbarFull)
    }
@@ -22,21 +22,17 @@ const Navbar = () => {
       <>
          <S.NavbarWrapper isFull={navbarFull}>
             <S.Logo>
-               <NavbarLogo/>
+               <NavbarLogo />
             </S.Logo>
-            <S.MobileLogo>
-               {navbarFull ? <NavbarLogo/> : <LogoIcon/>}
-            </S.MobileLogo>
+            <S.MobileLogo>{navbarFull ? <NavbarLogo /> : <LogoIcon />}</S.MobileLogo>
             <S.List>
                <S.BurgerIconWrapper>
-                  <S.BurgerIcon onClick={handleToggleNavbarSize}>
-                     {navbarFull ? <Close/> : <Burger/>}
-                  </S.BurgerIcon>
+                  <S.BurgerIcon onClick={handleToggleNavbarSize}>{navbarFull ? <Close /> : <Burger />}</S.BurgerIcon>
                </S.BurgerIconWrapper>
-               <NavbarList handleItemClick={handleDisableNavbarFullSize}/>
+               <NavbarList handleItemClick={handleDisableNavbarFullSize} />
             </S.List>
          </S.NavbarWrapper>
-         <Backdrop isActive={navbarFull} onClick={handleDisableNavbarFullSize}/>
+         <Backdrop isActive={navbarFull} onClick={handleDisableNavbarFullSize} />
       </>
    )
 }

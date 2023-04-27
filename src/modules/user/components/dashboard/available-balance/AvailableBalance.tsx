@@ -19,29 +19,24 @@ const AvailableBalance = () => {
          <S.CardTitle>Available Balance</S.CardTitle>
          <S.CardBalanceWrapper>
             <S.CardBalance>
-               <LuminousLogo/>
-               <S.Balance>
-                  {userData?.balance}
-               </S.Balance>
-               <S.BalanceCurrency>
-                  fst
-               </S.BalanceCurrency>
+               <LuminousLogo />
+               <S.Balance>{userData?.balance}</S.Balance>
+               <S.BalanceCurrency>fst</S.BalanceCurrency>
             </S.CardBalance>
             <S.ConvertedBalance>
-               {/* Todo: Ask backend to add the usdt balance field to user response */}
-               ≈ {userData?.balance} USDT
+               {/* TODO: Ask backend to add the usdt balance field to user response */}≈ {userData?.balance} USDT
             </S.ConvertedBalance>
          </S.CardBalanceWrapper>
          <S.ButtonGroup>
             <Button href="" variant="outlined">
                <S.ButtonIconWrapper>
-                  <WalletIcon/>
+                  <WalletIcon />
                </S.ButtonIconWrapper>
                Buy tokens
             </Button>
             <Button variant="primary">
                <S.ButtonIconWrapper>
-                  <WithdrawalIcon/>
+                  <WithdrawalIcon />
                </S.ButtonIconWrapper>
                Withdrawal
             </Button>

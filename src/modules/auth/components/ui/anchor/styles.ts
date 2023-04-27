@@ -27,5 +27,5 @@ export const StyledAnchor = styled.span(
       &:hover {
          color: ${colors.fringyFlower};
       }
-   `,
+   `
 )

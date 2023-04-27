@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { ITemplateState } from './types'
@@ -8,7 +10,9 @@ const initialState: ITemplateState = {
 
 const slice = createSlice({
    name: 'template',
+
    initialState,
+
    reducers: {
       toInitState: (state, { payload }: PayloadAction<[]>) => {
          state = initialState
@@ -17,4 +21,5 @@ const slice = createSlice({
 })
 
 export const { toInitState } = slice.actions
+
 export const templateReducer = slice.reducer

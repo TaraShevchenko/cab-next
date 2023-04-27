@@ -18,15 +18,12 @@ import { EColorTheme, getTheme } from '@/core/styles/theme'
 import { routes } from '@/config'
 
 interface IAppProvider {
-   children: JSX.Element;
+   children: JSX.Element
 }
 
-const Loader = dynamic(
-   () => import('@/core/components/ui/loader/Loader'),
-   {
-      ssr: false,
-   }
-)
+const Loader = dynamic(() => import('@/core/components/ui/loader/Loader'), {
+   ssr: false,
+})
 
 const AppProvider: FC<IAppProvider> = ({ children }) => {
    const dispatch = useAppDispatch()
@@ -49,9 +46,9 @@ const AppProvider: FC<IAppProvider> = ({ children }) => {
             <meta name="description" content={pageInfo?.description}></meta>
          </Head>
          <ThemeProvider theme={getTheme(theme)}>
-            <GlobalStyles/>
-            <ToastCustomContainer/>
-            <Loader/>
+            <GlobalStyles />
+            <ToastCustomContainer />
+            <Loader />
             {children}
          </ThemeProvider>
       </>

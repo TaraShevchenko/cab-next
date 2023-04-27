@@ -11,26 +11,26 @@ export const NAVBAR_MENU: INavbarMenuItem[] = [
    {
       name: 'Dashboard',
       icon: DashboardIcon,
-      url: ERoutesPaths.DASHBOARD
+      url: ERoutesPaths.DASHBOARD,
    },
    {
       name: 'Buy tokens',
       icon: WalletIcon,
-      url: ERoutesPaths.DEPOSIT
+      url: ERoutesPaths.DEPOSIT,
    },
    {
       name: 'My referrals',
       icon: ReferralsIcon,
-      url: ''
+      url: '',
    },
    {
       name: 'Transactions',
       icon: SwapIcon,
-      url: ERoutesPaths.TRANSACTIONS
+      url: ERoutesPaths.TRANSACTIONS,
    },
    {
       name: 'Settings',
       icon: SettingsIcon,
-      url: ''
+      url: '',
    },
 ]

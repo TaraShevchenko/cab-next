@@ -9,18 +9,18 @@ const Input = ({ icon: Component, label, ...props }: IInputProps, ref: Ref<{ foc
    useImperativeHandle(ref, () => ({
       focus: () => {
          inputRef?.current?.focus()
-      }
+      },
    }))
 
    return (
       <Container>
          {Component && (
             <WrapperIcon>
-               <Component/>
+               <Component />
             </WrapperIcon>
          )}
          <label htmlFor={label}>
-            <StyledInput id={label} icon={Component} {...props} ref={inputRef}/>
+            <StyledInput id={label} icon={Component} {...props} ref={inputRef} />
          </label>
       </Container>
    )

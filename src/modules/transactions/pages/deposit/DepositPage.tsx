@@ -7,7 +7,7 @@ import Deposit from '../../components/deposit/Deposit'
 const DepositPage = () => {
    return (
       <Layout>
-         <Deposit/>
+         <Deposit />
       </Layout>
    )
 }

@@ -5,17 +5,15 @@ import 'simplebar-react/dist/simplebar.min.css'
 import * as S from './style'
 
 export interface IShadowScrollbars {
-   children: ReactNode;
+   children: ReactNode
 }
 
 const ShadowScrollbars: FC<IShadowScrollbars> = ({ children }) => {
    return (
       <S.ScrollWrapper>
-         <S.TopScrollShadow/>
-         <SimpleBarReact style={{ maxHeight: '100%' }}>
-            {children}
-         </SimpleBarReact>
-         <S.BottomScrollShadow/>
+         <S.TopScrollShadow />
+         <SimpleBarReact style={{ maxHeight: '100%' }}>{children}</SimpleBarReact>
+         <S.BottomScrollShadow />
       </S.ScrollWrapper>
    )
 }

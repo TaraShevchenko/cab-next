@@ -7,16 +7,16 @@ import qrImage from '@/core/assets/images/willRemoved/qr.png'
 
 export const depositFormNames = {
    amount: 'amount',
-   converted: 'converted'
+   converted: 'converted',
 }
 
 export const depositFormInitialValues = {
    [depositFormNames.amount]: '',
-   [depositFormNames.converted]: ''
+   [depositFormNames.converted]: '',
 }
 
 export const EXCHANGE_RATE: IExchangeRateResponse = {
-   exchange_rate: 8.9
+   exchange_rate: 8.9,
 }
 
 export const DEPOSIT_DATA: IDepositData = {

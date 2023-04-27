@@ -22,7 +22,11 @@ const fadeIn = keyframes`
    }
 `
 
-export const CharFinalPointText = styled.div<{ top: number; value: string; isDowntrend: boolean }>(
+export const CharFinalPointText = styled.div<{
+   top: number
+   value: string
+   isDowntrend: boolean
+}>(
    ({ theme: { colorTheme, fonts, down, breakpoints }, top, value, isDowntrend }) => css`
       position: absolute;
       top: ${top - 10}px;
@@ -65,7 +69,7 @@ export const TooltipWrapper = styled.div(
       gap: 7px;
       align-items: flex-end;
       position: relative;
-      
+
       &:after {
          content: '';
          width: 7px;
@@ -106,7 +110,7 @@ export const TooltipWrapper = styled.div(
 )
 
 export const TooltipBackground = styled.div(
-   ({ theme: { colorTheme} }) => css`
+   ({ theme: { colorTheme } }) => css`
       position: absolute;
       top: 1px;
       left: 1px;

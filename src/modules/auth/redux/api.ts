@@ -4,30 +4,28 @@ import { IAuthResponse, ILoginPayload, ILogoutResponse, IRegistrationPayload } f
 import { API_ROUTES } from '@/config'
 
 export const api = coreApi.injectEndpoints({
-   endpoints: builder => ({
+   endpoints: (builder) => ({
       login: builder.mutation<IAuthResponse, ILoginPayload>({
          query: (payload) => ({
             url: API_ROUTES.LOGIN,
             method: 'POST',
-            body: { ...payload }
-         })
+            body: { ...payload },
+         }),
       }),
       registration: builder.mutation<IAuthResponse, IRegistrationPayload>({
          query: (payload) => ({
             url: API_ROUTES.REGISTRATION,
             method: 'POST',
-            body: { ...payload }
-         })
+            body: { ...payload },
+         }),
       }),
       logout: builder.mutation<ILogoutResponse, void>({
          query: () => ({
             url: API_ROUTES.LOGOUT,
             method: 'POST',
-         })
+         }),
       }),
-   })
+   }),
 })
 
-export const {
-   useLoginMutation, useRegistrationMutation, useLogoutMutation
-} = api
+export const { useLoginMutation, useRegistrationMutation, useLogoutMutation } = api

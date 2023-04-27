@@ -1,6 +1,6 @@
 import HCaptcha from '@hcaptcha/react-hcaptcha'
 import { yupResolver } from '@hookform/resolvers/yup'
-import Cookies from 'js-cookie';
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
@@ -30,12 +30,12 @@ const SignUpForm = () => {
    const theme = useSelector(selectTheme)
 
    const handleLoadingBefore = useLoading()
-   const [ handleRegistration ] = useRegistrationMutation()
+   const [handleRegistration] = useRegistrationMutation()
 
-   const [ read, setRead ] = useState(false)
-   const [ captchaIsVisible, setCaptchaIsVisible ] = useState(false)
-   const [ captchaToken, setCaptchaToken ] = useState('')
-   const [ buttonDisabled, setButtonDisabled ] = useState(true)
+   const [read, setRead] = useState(false)
+   const [captchaIsVisible, setCaptchaIsVisible] = useState(false)
+   const [captchaToken, setCaptchaToken] = useState('')
+   const [buttonDisabled, setButtonDisabled] = useState(true)
 
    const {
       reset,
@@ -43,11 +43,11 @@ const SignUpForm = () => {
       register,
       handleSubmit,
       getValues,
-      formState: { errors }
+      formState: { errors },
    } = useForm({
       mode: 'onSubmit',
       defaultValues: signUpFormInitialValues,
-      resolver: yupResolver(signUpFormValidationSchema)
+      resolver: yupResolver(signUpFormValidationSchema),
    })
 
    const handleRead = () => {
@@ -59,11 +59,11 @@ const SignUpForm = () => {
       const values = getValues()
       try {
          const response = await handleRegistration({
-            first_name: "first_name",
-            last_name: "last_name",
+            first_name: 'first_name',
+            last_name: 'last_name',
             email: values?.email || '',
             password: values?.password || '',
-            totp: captchaToken
+            totp: captchaToken,
          })
 
          if ('error' in response) {
@@ -101,47 +101,55 @@ const SignUpForm = () => {
          <S.Title>Create wallet</S.Title>
          <S.Description>Start your journey in the Fansee world</S.Description>
 
-
          <S.Form onSubmit={handleSubmit(handleSubmitForm)}>
             <Controller
                control={control}
                name={signUpFormNames.email}
-               render={({ field }) => (<InputWithLabel
-                  label="Email"
-                  icon={() => <Mail/>}
-                  error={errors[signUpFormNames.email]}
-                  {...register(signUpFormNames.email)}
-                  {...field}
-               />)}
+               render={({ field }) => (
+                  <InputWithLabel
+                     label="Email"
+                     icon={() => <Mail />}
+                     error={errors[signUpFormNames.email]}
+                     {...register(signUpFormNames.email)}
+                     {...field}
+                  />
+               )}
             />
             <Controller
                control={control}
                name={signUpFormNames.password}
-               render={({ field }) => (<InputWithLabel
-                  type="password"
-                  label="Password"
-                  icon={() => <LockClosed/>}
-                  error={errors[signUpFormNames.password]}
-                  {...register(signUpFormNames.password)}
-                  {...field}
-               />)}
+               render={({ field }) => (
+                  <InputWithLabel
+                     type="password"
+                     label="Password"
+                     icon={() => <LockClosed />}
+                     error={errors[signUpFormNames.password]}
+                     {...register(signUpFormNames.password)}
+                     {...field}
+                  />
+               )}
             />
             <Controller
                control={control}
                name={signUpFormNames.confirmPassword}
-               render={({ field }) => (<InputWithLabel
-                  type="password"
-                  label="Confirm Password"
-                  icon={() => <LockClosed/>}
-                  error={errors[signUpFormNames.confirmPassword]}
-                  {...register(signUpFormNames.confirmPassword)}
-                  {...field}
-               />)}
+               render={({ field }) => (
+                  <InputWithLabel
+                     type="password"
+                     label="Confirm Password"
+                     icon={() => <LockClosed />}
+                     error={errors[signUpFormNames.confirmPassword]}
+                     {...register(signUpFormNames.confirmPassword)}
+                     {...field}
+                  />
+               )}
             />
 
             <Checkbox checked={read} onChange={handleRead}>
                <S.Terms>
-                  I agree of the <a href="#"><Anchor>Terms & conditions</Anchor></a>
+                  I agree of the{' '}
+                  <a href="#">
+                     <Anchor>Terms & conditions</Anchor>
+                  </a>
                </S.Terms>
             </Checkbox>
 

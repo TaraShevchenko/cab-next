@@ -7,12 +7,12 @@ export const signInCopyright = {
    text: 'Don’t have an account?',
    linkText: 'Get started',
    linkUrl: ERoutesPaths.SIGN_UP,
-   image: womanBlackLingerieImg
+   image: womanBlackLingerieImg,
 }
 
 export const signUpCopyright = {
    text: 'Already have an account?',
    linkText: 'Sign In',
    linkUrl: ERoutesPaths.SIGN_IN,
-   image: brunetteWomanSittingImg
+   image: brunetteWomanSittingImg,
 }

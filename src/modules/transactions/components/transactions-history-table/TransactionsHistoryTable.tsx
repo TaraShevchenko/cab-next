@@ -11,7 +11,7 @@ const TransactionsHistoryTable = () => {
    return (
       <>
          <S.DateFilterWrapper>
-            <DatePicker/>
+            <DatePicker />
          </S.DateFilterWrapper>
 
          <S.TransactionWrapper>
@@ -57,7 +57,7 @@ const TransactionsHistoryTable = () => {
             </S.Transaction>
          </S.TransactionWrapper>
 
-         <LoaderOnPage/>
+         <LoaderOnPage />
       </>
    )
 }

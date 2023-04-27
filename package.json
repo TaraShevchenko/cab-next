@@ -7,7 +7,8 @@
       "build": "next build",
       "start": "next start",
       "export": "next export",
-      "lint": "next lint"
+      "lint": "next lint",
+      "format": "prettier --write \"src/**/*.{ts,tsx}\""
    },
    "dependencies": {
       "@hcaptcha/react-hcaptcha": "^1.7.0",
@@ -51,6 +52,7 @@
       "eslint-plugin-import": "^2.27.5",
       "eslint-plugin-jsx-a11y": "^6.7.1",
       "eslint-plugin-prettier": "^4.2.1",
-      "eslint-plugin-react": "^7.32.2"
+      "eslint-plugin-react": "^7.32.2",
+      "prettier": "^2.8.8"
    }
 }

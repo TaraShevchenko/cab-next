@@ -20,5 +20,5 @@ export const USER_DATA: IUserData = {
    m_bonus: 500.35,
    created_date: '2023-01-10 17:34:05.929',
    updated_date: '2023-01-10 17:34:05.929',
-   deleted_date: '2023-01-10 17:34:05.929'
+   deleted_date: '2023-01-10 17:34:05.929',
 }

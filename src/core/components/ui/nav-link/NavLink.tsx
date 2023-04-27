@@ -5,12 +5,12 @@ import React, { FC, ReactNode, MouseEvent } from 'react'
 import useLoading from '@/core/hooks/useLoading'
 
 export interface ILink {
-   to: string;
-   children: ReactNode;
-   onClick?: () => void;
+   to: string
+   children: ReactNode
+   onClick?: () => void
 }
 
-const NavLink:FC<ILink> = ({ to, children, onClick, ...props }) => {
+const NavLink: FC<ILink> = ({ to, children, onClick, ...props }) => {
    const { push } = useRouter()
    const handleLoadingBefore = useLoading()
    const convertedTo = `/${to[0] === '/' ? to.slice(1) : to}`

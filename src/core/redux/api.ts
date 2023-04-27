@@ -7,11 +7,11 @@ import { RootState } from '@/core/redux/store'
 import { IAuthResponse } from '@/modules/auth/redux/types'
 
 interface ApiResponse<T> {
-   data: T;
+   data: T
 }
 
 interface IApi extends BaseQueryApi {
-   getState: () => RootState;
+   getState: () => RootState
 }
 
 const baseQuery = fetchBaseQuery({
@@ -23,7 +23,7 @@ const baseQuery = fetchBaseQuery({
          headers.set('authorization', token)
       }
       return headers
-   }
+   },
 })
 
 const baseQueryWithRefreshToken = async (args: string | FetchArgs, api: IApi, extraOptions: any) => {
@@ -32,7 +32,7 @@ const baseQueryWithRefreshToken = async (args: string | FetchArgs, api: IApi, ex
    let result = await baseQuery(args, api, extraOptions)
 
    if (result?.error?.status === 403) {
-      const response = await baseQuery('/refresh', api, extraOptions) as ApiResponse<IAuthResponse>
+      const response = (await baseQuery('/refresh', api, extraOptions)) as ApiResponse<IAuthResponse>
       if (response?.data) {
          Cookies.set('token', response.data.token)
          Cookies.set('user_id', response.data.id)
@@ -51,5 +51,5 @@ const baseQueryWithRefreshToken = async (args: string | FetchArgs, api: IApi, ex
 
 export const coreApi = createApi({
    baseQuery: baseQueryWithRefreshToken,
-   endpoints: () => ({})
+   endpoints: () => ({}),
 })

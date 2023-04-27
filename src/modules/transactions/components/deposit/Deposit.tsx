@@ -11,18 +11,19 @@ const Deposit = () => {
    const activeCurrency = useSelector(selectActiveDepositCurrency)
    return (
       <S.DepositWrapper>
-         <CurrencySelector/>
+         <CurrencySelector />
 
-         {!!activeCurrency && <S.DepositFormWrapper>
-            <S.DepositFormTitle>
-               Deposit with {activeCurrency.asset_name} ({activeCurrency.chain_code})
-            </S.DepositFormTitle>
+         {!!activeCurrency && (
+            <S.DepositFormWrapper>
+               <S.DepositFormTitle>
+                  Deposit with {activeCurrency.asset_name} ({activeCurrency.chain_code})
+               </S.DepositFormTitle>
 
-            <DepositForm/>
-         </S.DepositFormWrapper>}
+               <DepositForm />
+            </S.DepositFormWrapper>
+         )}
       </S.DepositWrapper>
    )
 }
 
 export default Deposit
-

@@ -9,14 +9,12 @@ import * as S from './style'
 const Layout: FC<{ children?: ReactNode }> = ({ children }) => (
    <S.LayoutWrapper>
       <S.NavbarWrapper>
-         <Navbar/>
+         <Navbar />
       </S.NavbarWrapper>
       <S.ContentWrapper>
          <ShadowScrollbars>
-            <Header/>
-            <S.ContentOffset>
-               {children || ''}
-            </S.ContentOffset>
+            <Header />
+            <S.ContentOffset>{children || ''}</S.ContentOffset>
          </ShadowScrollbars>
       </S.ContentWrapper>
    </S.LayoutWrapper>

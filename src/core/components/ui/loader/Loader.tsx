@@ -10,7 +10,7 @@ import * as S from './styles'
 let timeout: NodeJS.Timeout
 const Loader = () => {
    const loading = useSelector(selectLoading)
-   const [ isActive, setIsActive ] = useState(false)
+   const [isActive, setIsActive] = useState(false)
 
    useEffect(() => {
       if (loading) {
@@ -21,29 +21,38 @@ const Loader = () => {
             setIsActive(false)
          }, 400)
       }
-   }, [ loading ])
+   }, [loading])
 
-   const [ enableLoader, setEnableLoader ] = useState(false)
+   const [enableLoader, setEnableLoader] = useState(false)
    useLayoutEffect(() => {
       setEnableLoader(true)
    }, [])
 
    return (
       <>
-         {enableLoader && <S.LoaderWrapper isActive={isActive}>
-            <S.LoaderBackground/>
-            <div className="loader-wrapper">
-               <div className="loader">
-                  <svg className="circular-loader" viewBox="25 25 50 50">
-                     <circle className="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#10EAB5"
-                             strokeWidth="1"/>
-                  </svg>
+         {enableLoader && (
+            <S.LoaderWrapper isActive={isActive}>
+               <S.LoaderBackground />
+               <div className="loader-wrapper">
+                  <div className="loader">
+                     <svg className="circular-loader" viewBox="25 25 50 50">
+                        <circle
+                           className="loader-path"
+                           cx="50"
+                           cy="50"
+                           r="20"
+                           fill="none"
+                           stroke="#10EAB5"
+                           strokeWidth="1"
+                        />
+                     </svg>
+                  </div>
                </div>
-            </div>
-            <S.LoaderLogo>
-               <Logo/>
-            </S.LoaderLogo>
-         </S.LoaderWrapper>}
+               <S.LoaderLogo>
+                  <Logo />
+               </S.LoaderLogo>
+            </S.LoaderWrapper>
+         )}
       </>
    )
 }

@@ -16,7 +16,7 @@ export const Icon = styled.svg(
       fill: none;
       stroke: ${colorTheme.checkboxs.primary.sign};
       stroke-width: 2px;
-   `,
+   `
 )
 
 export const HiddenCheckbox = styled.input.attrs({
@@ -56,5 +56,5 @@ export const StyledCheckbox = styled.div<{ checked: boolean }>(
       svg {
          visibility: ${checked ? 'visible' : 'hidden'};
       }
-   `,
+   `
 )
